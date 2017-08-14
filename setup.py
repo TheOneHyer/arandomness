@@ -28,10 +28,10 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Planning'
-__version__ = '0.1.0a3'
+__version__ = '0.1.0a4'
 
 setup(name='arandomness',
-      version='0.1.0a3',
+      version='0.1.0a4',
       description='An arandom assortment of random modules',
       classifiers=[
           'Development Status :: 1 - Planning',
@@ -40,11 +40,11 @@ setup(name='arandomness',
           'Natural Language :: English',
           'Operating System :: OS Independent',
           'Programming Language :: Python',
-          'Topic :: Software Developement'
+          'Topic :: Software Development :: Libraries :: Python Modules'
       ],
       keywords='arandomness TheOneHyer',
       url='https://github.com/TheOneHyer/arandomness',
-      download_url='https://github.com/TheOneHyer/arandomness/tarball/0.1.0a3',
+      download_url='https://github.com/TheOneHyer/arandomness/tarball/0.1.0a4',
       author='Alex Hyer',
       author_email='theonehyer@gmail.com',
       license='GPLv3',
