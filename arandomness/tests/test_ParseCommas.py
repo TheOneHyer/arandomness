@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-"""Initializes argparse package of arandom
+"""Test arandomness' ParseCommas
 
 Copyright:
-    __init.py__  initializes argparse package of arandomness
+    test_ParseCommas.py  test arandomness' ParseCommas
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -20,11 +20,26 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from arandomness.argparse.ParseCommas import ParseCommas
+import argparse
+from arandomness.argparse import ParseCommas
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
-__status__ = 'Planning'
-__version__ = '0.1.0a2'
+__status__ = 'Production/Stable'
+__version__ = '1.0.0'
+
+
+def test_ParseCommas():
+    """Test arandomness' ParseCommas with a simulated command line"""
+
+    # Create parser
+    parser = argparse.ArgumentParser()
+    parser.add_argument('test',
+                        action=ParseCommas)
+
+    # Test parser
+    args = parser.parse_args(['this,is,a,test'])
+    print(args)
+    assert args.test == ['this', 'is', 'a', 'test']
