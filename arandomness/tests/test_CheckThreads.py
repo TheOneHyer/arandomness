@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-"""Test arandomness' ParseCommas
+"""Test arandomness' CheckThreads
 
 Copyright:
     test_ParseCommas.py  test arandomness' ParseCommas
@@ -20,25 +20,42 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from arandomness.argparse import ParseCommas
+from arandomness.argparse import CheckThreads
 import argparse
+from multiprocessing import cpu_count
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.0.1'
+__version__ = '1.0.0'
 
 
-def test_ParseCommas():
-    """Test arandomness' ParseCommas with a simulated command line"""
+def test_CheckThreads():
+    """Test arandomness' CheckThreads with a simulated command line"""
 
     # Create parser
     parser = argparse.ArgumentParser()
     parser.add_argument('test',
-                        action=ParseCommas)
+                        type=int,
+                        action=CheckThreads)
 
-    # Test comma parsing
-    args = parser.parse_args(['this,is,a,test'])
-    assert args.test == ['this', 'is', 'a', 'test']
+    # Test when thread count is correct
+    threads = cpu_count() - 1
+    args = parser.parse_args([str(threads)])
+    assert args.test == threads
+
+    # Test >1 thread
+    try:
+        parser.parse_args([0])
+    except ValueError as error:
+        assert str(error) == 'Must use at least one thread'
+
+    # Test too many threads
+    threads = cpu_count() + 1
+    try:
+        parser.parse_args([str(threads)])
+    except ValueError as error:
+        assert str(error) == 'Cannot use more threads than available: {0}'\
+                             .format(str(cpu_count()))
