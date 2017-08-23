@@ -9,4 +9,5 @@ arandomness/argparse/CheckThreads.py
 arandomness/argparse/ParseCommas.py
 arandomness/argparse/__init__.py
 arandomness/string/__init__.py
+arandomness/string/autocorrect.py
 arandomness/string/max_substring.py
