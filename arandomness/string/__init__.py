@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-"""Initializes arandomness package
+"""Initializes string package of arandomness
 
 Copyright:
-    __init.py__  initializes arandomness package
+    __init__.py  initializes string package of arandomness
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -20,9 +20,11 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+from arandomness.string.max_substring import max_substring
+
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Planning'
-__version__ = '0.1.0a8'
+__version__ = '0.1.0a1'

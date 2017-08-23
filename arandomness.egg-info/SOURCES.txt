@@ -5,5 +5,6 @@ arandomness.egg-info/SOURCES.txt
 arandomness.egg-info/dependency_links.txt
 arandomness.egg-info/not-zip-safe
 arandomness.egg-info/top_level.txt
+arandomness/argparse/CheckThreads.py
 arandomness/argparse/ParseCommas.py
 arandomness/argparse/__init__.py

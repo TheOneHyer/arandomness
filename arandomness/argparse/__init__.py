@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-"""Initializes argparse package of arandom
+"""Initializes argparse package of arandomness
 
 Copyright:
     __init.py__  initializes argparse package of arandomness
@@ -28,4 +28,4 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Planning'
-__version__ = '0.1.0a3'
+__version__ = '0.1.0a4'
