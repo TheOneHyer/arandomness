@@ -8,3 +8,5 @@ arandomness.egg-info/top_level.txt
 arandomness/argparse/CheckThreads.py
 arandomness/argparse/ParseCommas.py
 arandomness/argparse/__init__.py
+arandomness/string/__init__.py
+arandomness/string/max_substring.py

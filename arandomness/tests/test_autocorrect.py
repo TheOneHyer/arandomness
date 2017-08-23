@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-"""Initializes string package of arandomness
+"""Test arandomness' autocorrect
 
 Copyright:
-    __init__.py  initializes string package of arandomness
+    test_autocorrect.py  test arandomness' autocorrect
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -20,12 +20,34 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from arandomness.string.autocorrect import autocorrect
-from arandomness.string.max_substring import max_substring
+from arandomness.string import autocorrect
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Planning'
-__version__ = '0.1.0a2'
+__version__ = '0.1.0a1'
+
+
+def test_autocorrect():
+    """Test arandomness' autocorrect"""
+
+    # Setup test data
+    words1 = ['bowtie2', 'bot']
+    words2 = ['apple', 'apocalyptic', 'off word']
+    words3 = ['computer', 'computational', 'compute']
+    words4 = ['hello', 'hi']
+
+    # Test "normal" word lists
+    assert autocorrect('bow', words1) == 'bowtie2'
+    assert autocorrect('apo', words2) == 'apocalyptic'
+
+    # Test when no match available
+    try:
+        autocorrect('bad', words3, delta=0.75) == ''
+    except AssertionError as error:
+        assert str(error) == 'No matches for "bad" found'
+
+    # Test exact word match
+    assert autocorrect('hello', words4) == 'hello'
