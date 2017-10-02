@@ -1,3 +1,4 @@
+MANIFEST.in
 setup.py
 arandomness/__init__.py
 arandomness.egg-info/PKG-INFO
@@ -11,3 +12,4 @@ arandomness/argparse/__init__.py
 arandomness/string/__init__.py
 arandomness/string/autocorrect.py
 arandomness/string/max_substring.py
+arandomness/string/print_columns.py
