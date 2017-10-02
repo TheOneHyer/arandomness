@@ -33,12 +33,12 @@ Installation
 
     pip install arandomness
 
+
 Contents
 ========
 
 .. toctree::
    :maxdepth: 2
-
 
 
 Indices and tables
@@ -47,6 +47,7 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
 
 Copyright
 =========

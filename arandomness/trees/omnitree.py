@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-"""Initializes arandomness package
+"""<description>
 
 Copyright:
-    __init.py__  initializes arandomness package
+    <script name>  <description>
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -25,4 +25,4 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Planning'
-__version__ = '0.1.0a13'
+__version__ = '0.1.0a1'
