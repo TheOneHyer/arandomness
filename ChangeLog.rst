@@ -4,6 +4,11 @@ Changelog
 
 (unreleased)
 ------------
+- Fixed test_autocorrect import. [TheOneHyer]
+
+  imports in __init__ of string are rearranged
+  to prevent conflict. test_autocorrect and
+  autocorrect now work properly.
 - Added autocorrect and unit test. [TheOneHyer]
 
   autocorrect funtion added. It's unit test works except

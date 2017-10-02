@@ -10,7 +10,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-build/
 develop-eggs/
 dist/
 downloads/
@@ -67,3 +66,5 @@ target/
 .pypirc
 
 # Created by .ignore support plugin (hsz.mobi)
+docs/source/_static/
+docs/source/_templates/

@@ -21,6 +21,7 @@ Copyright:
 """
 
 from arandomness.string.max_substring import max_substring
+from arandomness.string.print_columns import print_columns
 
 # I hate that this is not in alphabetical order, but it has to be in
 # this order for relative imports to work.
@@ -31,5 +32,5 @@ __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
-__status__ = 'Planning'
-__version__ = '0.1.0a3'
+__status__ = 'Alpha'
+__version__ = '0.1.0a4'
