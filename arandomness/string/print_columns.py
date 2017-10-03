@@ -50,9 +50,11 @@ def print_columns(*args):
         ValueError: raised if a tuple cannot be printed
 
     Example:
-        >>> print_columns(('hello', 5), 'bye', ('nope', 3))
-        hello  bye  nop
-                     e
+        .. code-block:: Python
+
+            >>> print_columns(('hello', 5), 'bye', ('nope', 3))
+            hello  bye  nop
+                         e
     """
 
     # Todo, redo this

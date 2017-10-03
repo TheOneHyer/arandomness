@@ -25,7 +25,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 
 def max_substring(words, position=0, _last_letter=''):
@@ -53,7 +53,7 @@ def max_substring(words, position=0, _last_letter=''):
             >>> max_substring(['abbb', 'bbbb', 'cbbb'], position=1)
             'bbb'
             >>> max_substring(['abc', 'bcd', 'cde'])
-    ''
+            ''
     """
 
     # If end of word is reached, begin reconstructing the substring
