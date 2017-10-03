@@ -40,6 +40,8 @@ Contents
 .. toctree::
    :maxdepth: 2
 
+   argparse.rst
+
 
 Indices and tables
 ==================

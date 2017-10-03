@@ -1,0 +1,302 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>argparse &#8212; arandomness 0.1.0a13 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0a13',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="arandomness: an arandom assortment of random modules" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-arandomness.argparse">
+<span id="argparse"></span><h1>argparse<a class="headerlink" href="#module-arandomness.argparse" title="Permalink to this headline">¶</a></h1>
+<p>Initializes argparse package of arandomness</p>
+<dl class="docutils">
+<dt>Copyright:</dt>
+<dd><p class="first">__init.py__  initializes argparse package of arandomness
+Copyright (C) 2017  Alex Hyer</p>
+<p>This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.</p>
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.</p>
+<p class="last">You should have received a copy of the GNU General Public License
+along with this program.  If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+</dd>
+</dl>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The argparse subpackage of arandomness contains scripts and actions to
+expand the utility of Python’s
+<a class="reference external" href="https://docs.python.org/3/library/argparse.html">argparse</a>
+library.</p>
+</div>
+<div class="section" id="checkthreads">
+<h2>CheckThreads<a class="headerlink" href="#checkthreads" title="Permalink to this headline">¶</a></h2>
+<p>CheckThreads is an
+<a class="reference external" href="https://docs.python.org/3/library/argparse.html#action">argparse action</a>,
+as such, it is called as the value of the <code class="docutils literal"><span class="pre">action</span></code> argument in argparse. For
+example:</p>
+<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">arandomness.argparse</span> <span class="kn">import</span> <span class="n">ThreadCheck</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--threads&#39;</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="n">ThreadCheck</span><span class="p">,</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+                    <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;number of threads to use&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal"><span class="pre">-t</span></code> is parsed, the value is passed to <code class="docutils literal"><span class="pre">ThreadCheck</span></code> which then
+checks that the value is between 1 and the maximum number of threads on the
+computer as per
+<a class="reference external" href="https://docs.python.org/2/library/multiprocessing.html#multiprocessing.cpu_count">multiprocessing.cpu_count()</a>.</p>
+<div class="section" id="api-documentation">
+<h3>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="arandomness.argparse.CheckThreads">
+<em class="property">class </em><code class="descclassname">arandomness.argparse.</code><code class="descname">CheckThreads</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/argparse/CheckThreads.html#CheckThreads"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.argparse.CheckThreads" title="Permalink to this definition">¶</a></dt>
+<dd><p>Argparse Action that ensures number of threads requested is valid</p>
+<dl class="attribute">
+<dt id="arandomness.argparse.CheckThreads.option_strings">
+<code class="descname">option_strings</code><a class="headerlink" href="#arandomness.argparse.CheckThreads.option_strings" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list</em> – list of str giving command line flags that
+call this action</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="arandomness.argparse.CheckThreads.dest">
+<code class="descname">dest</code><a class="headerlink" href="#arandomness.argparse.CheckThreads.dest" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Namespace reference to value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="arandomness.argparse.CheckThreads.nargs">
+<code class="descname">nargs</code><a class="headerlink" href="#arandomness.argparse.CheckThreads.nargs" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>bool</em> – True if multiple arguments specified</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">**kwargs</code></dt>
+<dd><p><em>various</em> – optional arguments to pass to super call</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="arandomness.argparse.CheckThreads.__call__">
+<code class="descname">__call__</code><span class="sig-paren">(</span><em>parser</em>, <em>namespace</em>, <em>values</em>, <em>option_string=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/argparse/CheckThreads.html#CheckThreads.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.argparse.CheckThreads.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by Argparse when user specifies multiple threads</p>
+<p>Simply asserts that the number of threads requested is greater than 0
+but not greater than the maximum number of threads the computer
+can support.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parser</strong> (<em>ArgumentParser</em>) – parser used to generate values</li>
+<li><strong>namespace</strong> (<em>Namespace</em>) – parse_args() generated namespace</li>
+<li><strong>values</strong> (<em>int</em>) – actual value specified by user</li>
+<li><strong>option_string</strong> (<em>str</em>) – argument flag used to call this function</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal"><span class="pre">TypeError</span></code> – if threads is not an integer</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">ValueError</span></code> – if threads is less than one or greater than number of
+threads available on computer</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="parsecommas">
+<h2>ParseCommas<a class="headerlink" href="#parsecommas" title="Permalink to this headline">¶</a></h2>
+<p>By default, <code class="docutils literal"><span class="pre">argparse</span></code> parses multiple arguments by spaces. While useful,
+it can sometimes be more practical, or at least easier to read, arguments
+parsed by commas when multiple arguments make use of
+<a class="reference external" href="https://docs.python.org/3/library/argparse.html#nargs">nargs</a>.
+<code class="docutils literal"><span class="pre">ParseCommas</span></code> simply takes a string, splits it by commas, and sets the
+resulting list as the value for the argument. For example:</p>
+<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">arandomness.argparse</span> <span class="kn">import</span> <span class="n">ParseCommas</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--an-argument&#39;</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="n">ParseCommas</span><span class="p">,</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;nargs using a string&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>So the argument <code class="docutils literal"><span class="pre">hello,world</span></code> would be set as <code class="docutils literal"><span class="pre">['hello',</span> <span class="pre">'world']</span></code> in args.</p>
+<div class="section" id="id2">
+<h3>API Documentation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="arandomness.argparse.ParseCommas">
+<em class="property">class </em><code class="descclassname">arandomness.argparse.</code><code class="descname">ParseCommas</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/argparse/ParseCommas.html#ParseCommas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.argparse.ParseCommas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Argparse Action that parses arguments by commas</p>
+<dl class="attribute">
+<dt id="arandomness.argparse.ParseCommas.option_strings">
+<code class="descname">option_strings</code><a class="headerlink" href="#arandomness.argparse.ParseCommas.option_strings" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list</em> – list of str giving command line flags that
+call this action</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="arandomness.argparse.ParseCommas.dest">
+<code class="descname">dest</code><a class="headerlink" href="#arandomness.argparse.ParseCommas.dest" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Namespace reference to value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="arandomness.argparse.ParseCommas.nargs">
+<code class="descname">nargs</code><a class="headerlink" href="#arandomness.argparse.ParseCommas.nargs" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>bool</em> – True if multiple arguments specified</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">**kwargs</code></dt>
+<dd><p><em>various</em> – optional arguments to pass to super call</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="arandomness.argparse.ParseCommas.__call__">
+<code class="descname">__call__</code><span class="sig-paren">(</span><em>parser</em>, <em>namespace</em>, <em>value</em>, <em>option_string=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/argparse/ParseCommas.html#ParseCommas.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.argparse.ParseCommas.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by Argparse when user specifies a comma-separated list</p>
+<p>Simply splits a list by commas and adds the values to namespace.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parser</strong> (<em>ArgumentParser</em>) – parser used to generate values</li>
+<li><strong>namespace</strong> (<em>Namespace</em>) – namespace to set values for</li>
+<li><strong>value</strong> (<em>str</em>) – actual value specified by user</li>
+<li><strong>option_string</strong> (<em>str</em>) – argument flag used to call this function</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal"><span class="pre">TypeError</span></code> – if value is not a string</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">ValueError</span></code> – if value cannot, for any reason, be parsed
+by commas</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">arandomness</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">argparse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#checkthreads">CheckThreads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parsecommas">ParseCommas</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">arandomness: an arandom assortment of random modules</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Alex Hyer.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/argparse.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
