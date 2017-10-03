@@ -1,0 +1,191 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>string &#8212; arandomness 0.1.0a14 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0a14',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="argparse" href="argparse.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-arandomness.string">
+<span id="string"></span><h1>string<a class="headerlink" href="#module-arandomness.string" title="Permalink to this headline">¶</a></h1>
+<p>Initializes string package of arandomness</p>
+<dl class="docutils">
+<dt>Copyright:</dt>
+<dd><p class="first">__init__.py  initializes string package of arandomness
+Copyright (C) 2017  Alex Hyer</p>
+<p>This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.</p>
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.</p>
+<p class="last">You should have received a copy of the GNU General Public License
+along with this program.  If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+</dd>
+</dl>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">string</span></code> subpackage of arandomness contains a couple functions that
+analyze or manipulate strings in some way. That’s about as specific as this
+subpackage gets. Enjoy!</p>
+</div>
+<div class="section" id="autocorrect">
+<h2>autocorrect<a class="headerlink" href="#autocorrect" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">autocorrect</span></code> function takes a single query string and a list of
+“correct” strings and identifies which string in the list the query most
+closely matches. There are many far more robust autocorrect algorithms
+written in Python than this one, but they all require a list of words
+organized by their frequency in a given language. Basically, these
+autocorrect algorithms are aimed at correcting words specific to a language and
+are thus better suited for use in language processing software, e.g. texting
+apps. This algorithm uses any list of strings and is order-agnostic. Thus,
+my <code class="docutils literal"><span class="pre">autocorrect</span></code> is better suited for attempting to match queries to small
+lists of arbitrary strings.</p>
+<p>To help realize this concept, I have used
+this function in a program that presented data in a database about programs
+available on a given system. The query was the user’s request and the
+possible strings was simply the list of program names in the database. Thus,
+if a user misspelled a program name, the program likely produced the proper
+entry.</p>
+<div class="section" id="api-documentation">
+<h3>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="arandomness.string.autocorrect">
+<code class="descclassname">arandomness.string.</code><code class="descname">autocorrect</code><span class="sig-paren">(</span><em>query</em>, <em>possibilities</em>, <em>delta=0.75</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/string/autocorrect.html#autocorrect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.string.autocorrect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempts to figure out what possibility the query is</p>
+<p>This autocorrect function is rather simple right now with plans for later
+improvement. Right now, it just attempts to finish spelling a word as much
+as possible, and then determines which possibility is closest to said word.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>query</strong> (<em>unicode</em>) – query to attempt to complete</li>
+<li><strong>possibilities</strong> (<em>list</em>) – list of unicodes of possible answers for query</li>
+<li><strong>delta</strong> (<em>float</em>) – minimum delta similarity between query and
+any given possibility for possibility to be considered.
+Delta used by difflib.get_close_matches().</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">best guess of correct answer</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">unicode</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">AssertionError</span></code> – raised if no matches found</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:
+&gt;&gt;&gt; autocorrect(‘bowtei’, [‘bowtie2’, ‘bot’])
+‘bowtie2’</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">arandomness</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="argparse.html">argparse</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">string</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#autocorrect">autocorrect</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="argparse.html" title="previous chapter">argparse</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Alex Hyer.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/string.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

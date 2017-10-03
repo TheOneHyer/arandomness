@@ -7,7 +7,7 @@ argparse
 Introduction
 ------------
 
-The argparse subpackage of arandomness contains scripts and actions to
+The ``argparse`` subpackage of arandomness contains scripts and actions to
 expand the utility of Python's
 `argparse <https://docs.python.org/3/library/argparse.html>`_
 library.
@@ -42,9 +42,7 @@ API Documentation
 =================
 
 .. autoclass:: arandomness.argparse.CheckThreads
-    :members:
-
-    .. automethod:: __call__
+   :members: __call__
 
 
 ParseCommas
@@ -74,6 +72,4 @@ API Documentation
 =================
 
 .. autoclass:: arandomness.argparse.ParseCommas
-    :members:
-
-    .. automethod:: __call__
+   :members: __call__

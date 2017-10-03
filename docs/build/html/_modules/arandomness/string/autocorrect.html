@@ -1,0 +1,186 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>arandomness.string.autocorrect &#8212; arandomness 0.1.0a14 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.1.0a14',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for arandomness.string.autocorrect</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! /usr/bin/env python</span>
+
+<span class="sd">&quot;&quot;&quot;Autocorrect word using list of possible words</span>
+
+<span class="sd">Copyright:</span>
+<span class="sd">    autocorrect.py  autocorrect word using list of possible words</span>
+<span class="sd">    Copyright (C) 2017  Alex Hyer</span>
+
+<span class="sd">    This program is free software: you can redistribute it and/or modify</span>
+<span class="sd">    it under the terms of the GNU General Public License as published by</span>
+<span class="sd">    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="sd">    (at your option) any later version.</span>
+
+<span class="sd">    This program is distributed in the hope that it will be useful,</span>
+<span class="sd">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="sd">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="sd">    GNU General Public License for more details.</span>
+
+<span class="sd">    You should have received a copy of the GNU General Public License</span>
+<span class="sd">    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">arandomness.string</span> <span class="k">import</span> <span class="n">max_substring</span>
+<span class="kn">from</span> <span class="nn">difflib</span> <span class="k">import</span> <span class="n">get_close_matches</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Alex Hyer&#39;</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;theonehyer@gmail.com&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;GPLv3&#39;</span>
+<span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Alex Hyer&#39;</span>
+<span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Production/Stable&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;1.0.0&#39;</span>
+
+
+<div class="viewcode-block" id="autocorrect"><a class="viewcode-back" href="../../../string.html#arandomness.string.autocorrect">[docs]</a><span class="k">def</span> <span class="nf">autocorrect</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">possibilities</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.75</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Attempts to figure out what possibility the query is</span>
+
+<span class="sd">    This autocorrect function is rather simple right now with plans for later</span>
+<span class="sd">    improvement. Right now, it just attempts to finish spelling a word as much</span>
+<span class="sd">    as possible, and then determines which possibility is closest to said word.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        query (unicode): query to attempt to complete</span>
+
+<span class="sd">        possibilities (list): list of unicodes of possible answers for query</span>
+
+<span class="sd">        delta (float): minimum delta similarity between query and</span>
+<span class="sd">                       any given possibility for possibility to be considered.</span>
+<span class="sd">                       Delta used by difflib.get_close_matches().</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        unicode: best guess of correct answer</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        AssertionError: raised if no matches found</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">    &gt;&gt;&gt; autocorrect(&#39;bowtei&#39;, [&#39;bowtie2&#39;, &#39;bot&#39;])</span>
+<span class="sd">    &#39;bowtie2&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># TODO: Make this way more robust and awesome using probability, n-grams?</span>
+
+    <span class="n">possibilities</span> <span class="o">=</span> <span class="p">[</span><span class="n">possibility</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">possibility</span> <span class="ow">in</span> <span class="n">possibilities</span><span class="p">]</span>
+
+    <span class="c1"># Don&#39;t waste time for exact matches</span>
+    <span class="k">if</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">possibilities</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">query</span>
+
+    <span class="c1"># Complete query as much as possible</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">possibilities</span> <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">query</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">options</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">possibilities</span> <span class="o">=</span> <span class="n">options</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="n">max_substring</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+
+    <span class="c1"># Identify possible matches and return best match</span>
+    <span class="n">matches</span> <span class="o">=</span> <span class="n">get_close_matches</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">possibilities</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="n">delta</span><span class="p">)</span>
+
+    <span class="c1"># Raise error if no matches</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">matches</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="k">except</span> <span class="ne">AssertionError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s1">&#39;No matches for &quot;</span><span class="si">{0}</span><span class="s1">&quot; found&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">query</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">arandomness</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../argparse.html">argparse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../string.html">string</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Alex Hyer.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

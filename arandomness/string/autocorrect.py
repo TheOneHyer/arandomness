@@ -28,7 +28,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 
 def autocorrect(query, possibilities, delta=0.75):
@@ -55,8 +55,11 @@ def autocorrect(query, possibilities, delta=0.75):
         AssertionError: raised if no matches found
 
     Example:
-    >>> autocorrect('bowtei', ['bowtie2', 'bot'])
-    'bowtie2'
+        .. code-block:: Python
+
+            >>> autocorrect('bowtei', ['bowtie2', 'bot'])
+            'bowtie2'
+
     """
 
     # TODO: Make this way more robust and awesome using probability, n-grams?

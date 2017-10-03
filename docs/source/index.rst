@@ -41,6 +41,7 @@ Contents
    :maxdepth: 2
 
    argparse.rst
+   string.rst
 
 
 Indices and tables
