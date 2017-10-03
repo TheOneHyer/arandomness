@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-"""<description>
+"""A many-to-many tree with self-aware features
 
 Copyright:
-    <script name>  <description>
+    omnitree.py  A many-to-many tree with self-aware features
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -26,3 +26,22 @@ __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Planning'
 __version__ = '0.1.0a1'
+
+
+class OmniTree(object):
+    """A many-to-many tree for organizing and manipulating related data
+
+    Attributes:
+
+        parents (list): list of OmniTree instances that are parents to this
+                        instance
+    """
+
+    def __init__(self, parents):
+        """"""
+
+        self.children = []
+        self.parents = parents
+
+        for parent in parents:
+            parent.add_child(self)
