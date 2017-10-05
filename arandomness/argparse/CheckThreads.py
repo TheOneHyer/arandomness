@@ -28,25 +28,25 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 
 class CheckThreads(argparse.Action):
-    """Argparse Action that ensures number of threads requested is valid
-
-    Attributes:
-        option_strings (list): list of str giving command line flags that
-                               call this action
-
-        dest (str): Namespace reference to value
-
-        nargs (bool): True if multiple arguments specified
-
-        **kwargs (various): optional arguments to pass to super call
-    """
+    """Argparse Action that ensures number of threads requested is valid"""
 
     def __init__(self, option_strings, dest, nargs=None, **kwargs):
-        """Initialize class and spawn self as Base Class w/o nargs"""
+        """Initialize class and spawn self as Base Class w/o nargs
+
+        Args:
+            option_strings (list): list of str giving command line flags that
+                                   call this action
+
+            dest (str): Namespace reference to value
+
+            nargs (bool): True if multiple arguments specified
+
+            **kwargs (various): optional arguments to pass to super call
+        """
 
         # Only accept a single value to analyze
         if nargs is not None:

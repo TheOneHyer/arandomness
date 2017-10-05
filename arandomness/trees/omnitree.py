@@ -41,7 +41,15 @@ class OmniTree(object):
     """
 
     def __init__(self, children=None, parents=None,):
-        """Initialize node and inform connected nodes"""
+        """Initialize node and inform connected nodes
+
+        Args:
+            children (list): list of OmniTree instances to set as children of
+                             this node at initialization
+
+            parents (list): list of OmniTree instances to set as parents of
+                            this node at initialization
+        """
 
         self.children = []
         self.parents = []

@@ -27,7 +27,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 
 class ParseCommas(argparse.Action):
@@ -49,6 +49,16 @@ class ParseCommas(argparse.Action):
 
         This class will "make" nargs by parsing the commas so it only accepts
         a single string, not a list.
+
+        Args:
+            option_strings (list): list of str giving command line flags that
+                                   call this action
+
+            dest (str): Namespace reference to value
+
+            nargs (bool): True if multiple arguments specified
+
+            **kwargs (various): optional arguments to pass to super call
         """
 
         # Only accept a single value to analyze
