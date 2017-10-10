@@ -25,7 +25,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Planning'
-__version__ = '0.1.0a4'
+__version__ = '0.1.0a5'
 
 
 class OmniTree(object):
@@ -51,7 +51,7 @@ class OmniTree(object):
         if children is not None:
             self._children = children
             for child in self._children:
-                child.add_parent([self])
+                child.add_parents([self])
 
         # Assign parents and notify them if needed
         if parents is not None:
@@ -77,6 +77,20 @@ class OmniTree(object):
 
         self._parents += [p for p in parents if p not in self._parents]
 
+    def find_loops(self, _path=None):
+        """"""
+
+        if _path is None:
+            _path = []
+
+        if self in _path:
+            return _path + [self]
+        elif self._children == []:
+            return None
+        else:
+            for child in self._children:
+                return child.find_loops(_path + [self])
+
     def find_branches(self):
         """"""
 
@@ -85,7 +99,7 @@ class OmniTree(object):
             return [self.label]
         else:
             for child in self._children:
-                branches.append([self.label] + child.find_paths())
+                branches.append([self.label] + child.find_branches())
             return branches
 
     def find_unique_branches(self):
@@ -96,6 +110,11 @@ class OmniTree(object):
             return [self.label]
         else:
             for child in self._children:
-                for branch in child.find_paths():
+                for branch in child.find_unique_branches():
                     branches.append([self.label] + branch)
             return branches
+
+
+a=OmniTree('a')
+b=OmniTree('b', parents=[a])
+c=OmniTree('c', parents=[b], children=[a])
