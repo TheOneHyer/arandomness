@@ -23,17 +23,17 @@ example:
 
 .. code-block:: Python
 
-    from arandomness.argparse import ThreadCheck
+    from arandomness.argparse import CheckThreads
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('-t', '--threads',
-                        action=ThreadCheck,
+                        action=CheckThreads,
                         type=int,
                         default=1,
                         help='number of threads to use')
     args = parser.parse_args()
 
-When ``-t`` is parsed, the value is passed to ``ThreadCheck`` which then
+When ``-t`` is parsed, the value is passed to ``CheckThreads`` which then
 checks that the value is between 1 and the maximum number of threads on the
 computer as per
 `multiprocessing.cpu_count() <https://docs.python.org/2/library/multiprocessing.html#multiprocessing.cpu_count>`_.

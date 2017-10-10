@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>argparse &#8212; arandomness 0.1.0a20 documentation</title>
+    <title>argparse &#8212; arandomness 0.1.0a21 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.0a20',
+        VERSION:     '0.1.0a21',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -124,18 +124,18 @@ library.</p>
 <a class="reference external" href="https://docs.python.org/3/library/argparse.html#action">argparse action</a>,
 as such, it is called as the value of the <code class="docutils literal"><span class="pre">action</span></code> argument in argparse. For
 example:</p>
-<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">arandomness.argparse</span> <span class="kn">import</span> <span class="n">ThreadCheck</span>
+<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">arandomness.argparse</span> <span class="kn">import</span> <span class="n">CheckThreads</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
 <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-t&#39;</span><span class="p">,</span> <span class="s1">&#39;--threads&#39;</span><span class="p">,</span>
-                    <span class="n">action</span><span class="o">=</span><span class="n">ThreadCheck</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="n">CheckThreads</span><span class="p">,</span>
                     <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
                     <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                     <span class="n">help</span><span class="o">=</span><span class="s1">&#39;number of threads to use&#39;</span><span class="p">)</span>
 <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>When <code class="docutils literal"><span class="pre">-t</span></code> is parsed, the value is passed to <code class="docutils literal"><span class="pre">ThreadCheck</span></code> which then
+<p>When <code class="docutils literal"><span class="pre">-t</span></code> is parsed, the value is passed to <code class="docutils literal"><span class="pre">CheckThreads</span></code> which then
 checks that the value is between 1 and the maximum number of threads on the
 computer as per
 <a class="reference external" href="https://docs.python.org/2/library/multiprocessing.html#multiprocessing.cpu_count">multiprocessing.cpu_count()</a>.</p>
