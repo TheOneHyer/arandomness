@@ -25,7 +25,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Alpha'
-__version__ = '0.1.0a6'
+__version__ = '0.1.0a7'
 
 
 class OmniTree(object):
@@ -73,7 +73,7 @@ class OmniTree(object):
         self._parents += [p for p in parents if p not in self._parents]
 
     def find_loops(self, _path=None):
-        """"""
+        """Crappy function that finds a single loop in the tree"""
 
         if _path is None:
             _path = []
@@ -106,11 +106,11 @@ class OmniTree(object):
 
         Examples:
             >>> from arandomness.trees import OmniTree
-            >>> a=OmniTree(label='a')
-            >>> b=OmniTree(label='b', parents=[a])
-            >>> c=OmniTree(label='c', parents=[b])
-            >>> d=OmniTree(label='d', parents=[b])
-            >>> e=OmniTree(label='e', parents=[c,d])
+            >>> a = OmniTree(label='a')
+            >>> b = OmniTree(label='b', parents=[a])
+            >>> c = OmniTree(label='c', parents=[b])
+            >>> d = OmniTree(label='d', parents=[b])
+            >>> e = OmniTree(label='e', parents=[c, d])
             >>> a.find_branches(labels=True)
             ['a', ['b', ['c', ['e']], ['d', ['e']]]]
             >>> a.find_branches(labels=True, unique=True)
@@ -121,12 +121,12 @@ class OmniTree(object):
 
         # Assign proper item, pointer or label, to return
         if labels is True:
-            identifier = self.label
+            identifier = [self.label]
         else:
-            identifier = self
+            identifier = [self]
 
         if self._children == []:  # Base Case: current node is a leaf/end node
-            return [identifier]
+            return identifier
 
         else:  # Recursive Case: all other nodes
             for child in self._children:
@@ -136,7 +136,7 @@ class OmniTree(object):
                         # I don't know why this 'if' is necessary, but it is
                         if type(branch) is not list:
                             branch = list(branch)
-                        branches.append([identifier] + branch)
+                        branches.append(identifier + branch)
                 else:
                     branches.append(child.find_branches(labels=labels))
 
@@ -144,4 +144,4 @@ class OmniTree(object):
             if unique is True:
                 return branches
             else:
-                return [identifier] + branches
+                return identifier + branches
