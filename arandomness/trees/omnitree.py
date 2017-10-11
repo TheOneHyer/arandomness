@@ -24,27 +24,22 @@ __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
-__status__ = 'Planning'
-__version__ = '0.1.0a5'
+__status__ = 'Alpha'
+__version__ = '0.1.0a6'
 
 
 class OmniTree(object):
     """A many-to-many tree for organizing and manipulating hierarchical data
 
     Attributes:
-
-        children (list): list of OmniTree instances that are children to this
-                         node
-
-        parents (list): list of OmniTree instances that are parents to this
-                        node
+        label (unicode): optional, arbitrary name for node
     """
 
-    def __init__(self, label, children=None, parents=None,):
+    def __init__(self, label=None, children=None, parents=None):
         """Initialize node and inform connected nodes"""
 
-        self._children = []
-        self._parents = []
+        self._children = []  # list of child nodes
+        self._parents = []  # list of parent nodes
         self.label = label
 
         # Assign children and notify them if needed
@@ -91,30 +86,62 @@ class OmniTree(object):
             for child in self._children:
                 return child.find_loops(_path + [self])
 
-    def find_branches(self):
-        """"""
+    def find_branches(self, labels=False, unique=False):
+        """Recursively constructs a list of pointers of the tree's structure
+
+        Args:
+            labels (bool): If True, returned lists consist of node labels.
+                           If False (default), lists consist of node
+                           pointers. This option is mostly intended for
+                           debugging purposes.
+
+            unique (bool): If True, return lists of all unique, linear branches
+                           of the tree. More accurately, it returns a list
+                           of lists where each list contains a single,
+                           unique, linear path from the calling node to the
+                           tree's leaf nodes. If False (default),
+                           a highly-nested list is returned where each nested
+                           list represents a branch point in the tree.
+                           See Examples for more.
+
+        Examples:
+            >>> from arandomness.trees import OmniTree
+            >>> a=OmniTree(label='a')
+            >>> b=OmniTree(label='b', parents=[a])
+            >>> c=OmniTree(label='c', parents=[b])
+            >>> d=OmniTree(label='d', parents=[b])
+            >>> e=OmniTree(label='e', parents=[c,d])
+            >>> a.find_branches(labels=True)
+            ['a', ['b', ['c', ['e']], ['d', ['e']]]]
+            >>> a.find_branches(labels=True, unique=True)
+            [['a', 'b', 'c', 'e'], ['a', 'b', 'd', 'e']]
+        """
 
         branches = []
-        if self._children == []:  # Current node is a leaf/end node
-            return [self.label]
+
+        # Assign proper item, pointer or label, to return
+        if labels is True:
+            identifier = self.label
         else:
+            identifier = self
+
+        if self._children == []:  # Base Case: current node is a leaf/end node
+            return [identifier]
+
+        else:  # Recursive Case: all other nodes
             for child in self._children:
-                branches.append([self.label] + child.find_branches())
-            return branches
+                if unique is True:
+                    for branch in child.find_branches(labels=labels,
+                                                      unique=True):
+                        # I don't know why this 'if' is necessary, but it is
+                        if type(branch) is not list:
+                            branch = list(branch)
+                        branches.append([identifier] + branch)
+                else:
+                    branches.append(child.find_branches(labels=labels))
 
-    def find_unique_branches(self):
-        """"""
-
-        branches = []
-        if self._children == []:  # Current node is a leaf/end node
-            return [self.label]
-        else:
-            for child in self._children:
-                for branch in child.find_unique_branches():
-                    branches.append([self.label] + branch)
-            return branches
-
-
-a=OmniTree('a')
-b=OmniTree('b', parents=[a])
-c=OmniTree('c', parents=[b], children=[a])
+            # Proper construction of list depends on 'unique'
+            if unique is True:
+                return branches
+            else:
+                return [identifier] + branches
