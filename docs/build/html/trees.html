@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Python Module Index &#8212; arandomness 0.1.0rc1 documentation</title>
+    <title>trees &#8212; arandomness 0.1.0rc1 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,14 +24,12 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-
+    <link rel="prev" title="string" href="string.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-
 
   </head>
   <body>
@@ -58,16 +56,21 @@
 
 
 <h3>Navigation</h3>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="argparse.html">argparse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="string.html">string</a></li>
-<li class="toctree-l1"><a class="reference internal" href="trees.html">trees</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">trees</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#omnitree-deprecated">OmniTree (Deprecated)</a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="string.html" title="previous chapter">string</a></li>
   </ul></li>
 </ul>
 </div>
@@ -87,34 +90,33 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-
-   <h1>Python Module Index</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-a"><strong>a</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-a"><td></td><td>
-       <strong>a</strong></td><td></td></tr>
-     <tr>
-       <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-       <td>
-       <a href="index.html#module-arandomness"><code class="xref">arandomness</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="argparse.html#module-arandomness.argparse"><code class="xref">arandomness.argparse</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="string.html#module-arandomness.string"><code class="xref">arandomness.string</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <div class="section" id="trees">
+<h1>trees<a class="headerlink" href="#trees" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">argparse</span></code> subpackage of arandomness contains scripts and classes
+relating to <a class="reference external" href="https://en.wikipedia.org/wiki/Tree_(data_structure)">trees</a>.</p>
+</div>
+<div class="section" id="omnitree-deprecated">
+<h2>OmniTree (Deprecated)<a class="headerlink" href="#omnitree-deprecated" title="Permalink to this headline">¶</a></h2>
+<p>OmniTree is a class for creating a tree where each node can contain multiple
+children and multiple parents. I began writing this class because I could
+not find an extant tree library that supported this many-to-many paradigm.
+While binary and/or hierarchical tree with only a single parent are common,
+see <a class="reference external" href="https://anytree.readthedocs.io/en/latest/">anytree</a>, trees like
+OmniTree are not. After a lot of R&amp;D, I realized that these is such a
+structure, a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Graph_(abstract_data_type)">graph</a>.
+Basically, many-to-many trees don’t exist because they cannot by definition.
+Thus, OmniTree is pointless as there are already amazing libraries for
+manipulating and managing graphs, such as
+<a class="reference external" href="https://networkx.github.io/">NetworkX</a>. As such, OmniTree is deprecated
+and is only included for archival purposes.</p>
+<div class="section" id="api-documentation">
+<h3>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
 
 
           </div>
@@ -129,6 +131,9 @@
       Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
+      |
+      <a href="_sources/trees.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
 
     

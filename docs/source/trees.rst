@@ -1,0 +1,34 @@
+=====
+trees
+=====
+
+.. automodule:: arandomness.trees
+
+Introduction
+------------
+
+The ``argparse`` subpackage of arandomness contains scripts and classes
+relating to `trees <https://en.wikipedia.org/wiki/Tree_(data_structure)>`_.
+
+OmniTree (Deprecated)
+---------------------
+
+OmniTree is a class for creating a tree where each node can contain multiple
+children and multiple parents. I began writing this class because I could
+not find an extant tree library that supported this many-to-many paradigm.
+While binary and/or hierarchical tree with only a single parent are common,
+see `anytree <https://anytree.readthedocs.io/en/latest/>`_, trees like
+OmniTree are not. After a lot of R&D, I realized that these is such a
+structure, a
+`graph <https://en.wikipedia.org/wiki/Graph_(abstract_data_type)>`_.
+Basically, many-to-many trees don't exist because they cannot by definition.
+Thus, OmniTree is pointless as there are already amazing libraries for
+manipulating and managing graphs, such as
+`NetworkX <https://networkx.github.io/>`_. As such, OmniTree is deprecated
+and is only included for archival purposes.
+
+API Documentation
+=================
+
+.. autoclass:: arandomness.trees.OmniTree
+   :members: __init__

@@ -42,6 +42,7 @@ Contents
 
    argparse.rst
    string.rst
+   trees.rst
 
 
 Indices and tables
