@@ -90,8 +90,25 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="trees">
-<h1>trees<a class="headerlink" href="#trees" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-arandomness.trees">
+<span id="trees"></span><h1>trees<a class="headerlink" href="#module-arandomness.trees" title="Permalink to this headline">¶</a></h1>
+<p>Initializes trees package of arandomness</p>
+<dl class="docutils">
+<dt>Copyright:</dt>
+<dd><p class="first">__init__.py  Initializes trees package of arandomness
+Copyright (C) 2017  Alex Hyer</p>
+<p>This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.</p>
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.</p>
+<p class="last">You should have received a copy of the GNU General Public License
+along with this program.  If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+</dd>
+</dl>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal"><span class="pre">argparse</span></code> subpackage of arandomness contains scripts and classes
@@ -114,6 +131,105 @@ manipulating and managing graphs, such as
 and is only included for archival purposes.</p>
 <div class="section" id="api-documentation">
 <h3>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="arandomness.trees.OmniTree">
+<em class="property">class </em><code class="descclassname">arandomness.trees.</code><code class="descname">OmniTree</code><span class="sig-paren">(</span><em>label=None</em>, <em>children=None</em>, <em>parents=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/trees/omnitree.html#OmniTree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.trees.OmniTree" title="Permalink to this definition">¶</a></dt>
+<dd><p>A many-to-many tree for organizing and manipulating hierarchical data</p>
+<dl class="attribute">
+<dt id="arandomness.trees.OmniTree.label">
+<code class="descname">label</code><a class="headerlink" href="#arandomness.trees.OmniTree.label" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>unicode</em> – optional, arbitrary name for node</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="arandomness.trees.OmniTree.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><em>label=None</em>, <em>children=None</em>, <em>parents=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/trees/omnitree.html#OmniTree.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.trees.OmniTree.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize node and inform connected nodes</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="arandomness.trees.OmniTree.__weakref__">
+<code class="descname">__weakref__</code><a class="headerlink" href="#arandomness.trees.OmniTree.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="arandomness.trees.OmniTree.add_children">
+<code class="descname">add_children</code><span class="sig-paren">(</span><em>children</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/trees/omnitree.html#OmniTree.add_children"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.trees.OmniTree.add_children" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds new children nodes after filtering for duplicates</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>children</strong> (<em>list</em>) – list of OmniTree nodes to add as children</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="arandomness.trees.OmniTree.add_parents">
+<code class="descname">add_parents</code><span class="sig-paren">(</span><em>parents</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/trees/omnitree.html#OmniTree.add_parents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.trees.OmniTree.add_parents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds new parent nodes after filtering for duplicates</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>parents</strong> (<em>list</em>) – list of OmniTree nodes to add as parents</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="arandomness.trees.OmniTree.find_branches">
+<code class="descname">find_branches</code><span class="sig-paren">(</span><em>labels=False</em>, <em>unique=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/trees/omnitree.html#OmniTree.find_branches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.trees.OmniTree.find_branches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recursively constructs a list of pointers of the tree’s structure</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>labels</strong> (<em>bool</em>) – If True, returned lists consist of node labels.
+If False (default), lists consist of node
+pointers. This option is mostly intended for
+debugging purposes.</li>
+<li><strong>unique</strong> (<em>bool</em>) – If True, return lists of all unique, linear branches
+of the tree. More accurately, it returns a list
+of lists where each list contains a single,
+unique, linear path from the calling node to the
+tree’s leaf nodes. If False (default),
+a highly-nested list is returned where each nested
+list represents a branch point in the tree.
+See Examples for more.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">arandomness.trees</span> <span class="k">import</span> <span class="n">OmniTree</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">OmniTree</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">OmniTree</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">OmniTree</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">b</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">OmniTree</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">b</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">OmniTree</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">find_branches</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">[&#39;a&#39;, [&#39;b&#39;, [&#39;c&#39;, [&#39;e&#39;]], [&#39;d&#39;, [&#39;e&#39;]]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">find_branches</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">[[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;e&#39;], [&#39;a&#39;, &#39;b&#39;, &#39;d&#39;, &#39;e&#39;]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="arandomness.trees.OmniTree.find_loops">
+<code class="descname">find_loops</code><span class="sig-paren">(</span><em>_path=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/trees/omnitree.html#OmniTree.find_loops"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.trees.OmniTree.find_loops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crappy function that finds a single loop in the tree</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 </div>

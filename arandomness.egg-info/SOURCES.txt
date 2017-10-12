@@ -13,3 +13,5 @@ arandomness/string/__init__.py
 arandomness/string/autocorrect.py
 arandomness/string/max_substring.py
 arandomness/string/print_columns.py
+arandomness/trees/__init__.py
+arandomness/trees/omnitree.py

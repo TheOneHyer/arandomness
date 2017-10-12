@@ -31,4 +31,5 @@ API Documentation
 =================
 
 .. autoclass:: arandomness.trees.OmniTree
-   :members: __init__
+   :members:
+   :special-members:
