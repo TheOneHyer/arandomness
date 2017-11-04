@@ -4,6 +4,10 @@ Changelog
 
 (unreleased)
 ------------
+- Added CopyRight. [TheOneHyer]
+
+  CopyRight added to print copyright messages and exit. Has a
+  working unit test. Upped version numbers of small __init__s.
 - Updated OmniTree Docs. [TheOneHyer]
 
   OmniTree RTD updated.

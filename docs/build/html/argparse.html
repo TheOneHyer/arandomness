@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>argparse &#8212; arandomness 0.1.0rc1 documentation</title>
+    <title>argparse &#8212; arandomness 0.1.0rc3 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.0rc1',
+        VERSION:     '0.1.0rc3',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -61,6 +61,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">argparse</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#checkthreads">CheckThreads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copyright">CopyRight</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#parsecommas">ParseCommas</a></li>
 </ul>
 </li>
@@ -121,10 +122,10 @@ library.</p>
 </div>
 <div class="section" id="checkthreads">
 <h2>CheckThreads<a class="headerlink" href="#checkthreads" title="Permalink to this headline">¶</a></h2>
-<p>CheckThreads is an
+<p><code class="docutils literal"><span class="pre">CheckThreads</span></code> is an
 <a class="reference external" href="https://docs.python.org/3/library/argparse.html#action">argparse action</a>,
-as such, it is called as the value of the <code class="docutils literal"><span class="pre">action</span></code> argument in argparse. For
-example:</p>
+as such, it is called as the value of the <code class="docutils literal"><span class="pre">action</span></code> argument in
+<code class="docutils literal"><span class="pre">argparse</span></code>. For example:</p>
 <div class="highlight-Python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">arandomness.argparse</span> <span class="kn">import</span> <span class="n">CheckThreads</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
@@ -180,6 +181,89 @@ threads available on computer</li>
 
 </div>
 </div>
+<div class="section" id="copyright">
+<h2>CopyRight<a class="headerlink" href="#copyright" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">CopyRight</span></code> is an <code class="docutils literal"><span class="pre">argparse</span></code> <code class="docutils literal"><span class="pre">action</span></code> that simply takes in text,
+strips it of leading and trailing whitespace, prints it, and exits the
+program. Its functionality is analogous to
+<code class="docutils literal"><span class="pre">argparse</span></code>’s ` version &lt;<a class="reference external" href="https://docs.python.org/3/library/argparse">https://docs.python.org/3/library/argparse</a>
+.html#action&gt;`_. The action can take in arbitrary text and is only named
+<code class="docutils literal"><span class="pre">CopyRight</span></code> for code readability.</p>
+<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">arandomness.argparse</span> <span class="kn">import</span> <span class="n">CopyRight</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--copyright&#39;</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="n">CopyRight</span><span class="p">,</span>
+                    <span class="n">copyright_text</span><span class="o">=</span><span class="s1">&#39;This is my copyright&#39;</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;print copyright and exit&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="id2">
+<h3>API Documentation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="arandomness.argparse.CopyRight">
+<em class="property">class </em><code class="descclassname">arandomness.argparse.</code><code class="descname">CopyRight</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>copyright_text=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/argparse/CopyRight.html#CopyRight"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.argparse.CopyRight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Argparse Action that prints a program copyright</p>
+<dl class="attribute">
+<dt id="arandomness.argparse.CopyRight.option_strings">
+<code class="descname">option_strings</code><a class="headerlink" href="#arandomness.argparse.CopyRight.option_strings" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list</em> – list of str giving command line flags that
+call this action</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="arandomness.argparse.CopyRight.dest">
+<code class="descname">dest</code><a class="headerlink" href="#arandomness.argparse.CopyRight.dest" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>str</em> – Namespace reference to value</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="arandomness.argparse.CopyRight.nargs">
+<code class="descname">nargs</code><a class="headerlink" href="#arandomness.argparse.CopyRight.nargs" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>bool</em> – True if multiple arguments specified</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">**kwargs</code></dt>
+<dd><p><em>various</em> – optional arguments to pass to super call</p>
+</dd></dl>
+
+<p>It does not escape my notice that this action prints arbitrary text
+without any sort of “copyright-specific” attributes or mangling. This
+function is only called this for readability in code.</p>
+<dl class="method">
+<dt id="arandomness.argparse.CopyRight.__call__">
+<code class="descname">__call__</code><span class="sig-paren">(</span><em>parser</em>, <em>namespace</em>, <em>value</em>, <em>option_string=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/argparse/CopyRight.html#CopyRight.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.argparse.CopyRight.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the given text stripped of excess whitespace and exits</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>parser</strong> (<em>ArgumentParser</em>) – parser used to generate values</li>
+<li><strong>namespace</strong> (<em>Namespace</em>) – namespace to set values for</li>
+<li><strong>value</strong> (<em>str</em>) – actual value specified by user</li>
+<li><strong>option_string</strong> (<em>str</em>) – argument flag used to call this function</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal"><span class="pre">TypeError</span></code> – if value is not a string</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">ValueError</span></code> – if value cannot, for any reason, be parsed
+by commas</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
 <div class="section" id="parsecommas">
 <h2>ParseCommas<a class="headerlink" href="#parsecommas" title="Permalink to this headline">¶</a></h2>
 <p>By default, <code class="docutils literal"><span class="pre">argparse</span></code> parses multiple arguments by spaces. While useful,
@@ -199,8 +283,8 @@ resulting list as the value for the argument. For example:</p>
 </pre></div>
 </div>
 <p>So the argument <code class="docutils literal"><span class="pre">hello,world</span></code> would be set as <code class="docutils literal"><span class="pre">['hello',</span> <span class="pre">'world']</span></code> in args.</p>
-<div class="section" id="id2">
-<h3>API Documentation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h3>API Documentation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="arandomness.argparse.ParseCommas">
 <em class="property">class </em><code class="descclassname">arandomness.argparse.</code><code class="descname">ParseCommas</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/argparse/ParseCommas.html#ParseCommas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.argparse.ParseCommas" title="Permalink to this definition">¶</a></dt>
@@ -221,7 +305,7 @@ call this action</p>
 <dl class="attribute">
 <dt id="arandomness.argparse.ParseCommas.nargs">
 <code class="descname">nargs</code><a class="headerlink" href="#arandomness.argparse.ParseCommas.nargs" title="Permalink to this definition">¶</a></dt>
-<dd><p><em>bool</em> – True if multiple arguments specified</p>
+<dd><p><em>str</em> – number of args as special char or int</p>
 </dd></dl>
 
 <dl class="attribute">

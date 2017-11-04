@@ -16,10 +16,10 @@ library.
 CheckThreads
 ------------
 
-CheckThreads is an
+``CheckThreads`` is an
 `argparse action <https://docs.python.org/3/library/argparse.html#action>`_,
-as such, it is called as the value of the ``action`` argument in argparse. For
-example:
+as such, it is called as the value of the ``action`` argument in
+``argparse``. For example:
 
 .. code-block:: Python
 
@@ -42,6 +42,34 @@ API Documentation
 =================
 
 .. autoclass:: arandomness.argparse.CheckThreads
+   :members: __call__
+
+
+CopyRight
+---------
+
+``CopyRight`` is an ``argparse`` ``action`` that simply takes in text,
+strips it of leading and trailing whitespace, prints it, and exits the
+program. Its functionality is analogous to
+``argparse``'s ` version <https://docs.python.org/3/library/argparse
+.html#action>`_. The action can take in arbitrary text and is only named
+``CopyRight`` for code readability.
+
+.. code-block:: Python
+
+    from arandomness.argparse import CopyRight
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--copyright',
+                        action=CopyRight,
+                        copyright_text='This is my copyright',
+                        help='print copyright and exit')
+    args = parser.parse_args()
+
+API Documentation
+=================
+
+.. autoclass:: arandomness.argparse.CopyRight
    :members: __call__
 
 
