@@ -51,7 +51,7 @@ CopyRight
 ``CopyRight`` is an ``argparse`` ``action`` that simply takes in text,
 strips it of leading and trailing whitespace, prints it, and exits the
 program. Its functionality is analogous to
-``argparse``'s ` version <https://docs.python.org/3/library/argparse
+``argparse``'s `version <https://docs.python.org/3/library/argparse
 .html#action>`_. The action can take in arbitrary text and is only named
 ``CopyRight`` for code readability.
 
