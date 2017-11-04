@@ -4,6 +4,62 @@ Changelog
 
 (unreleased)
 ------------
+- Updated OmniTree Docs. [TheOneHyer]
+
+  OmniTree RTD updated.
+- OmniTree: Deprecated. [TheOneHyer]
+
+  OmniTree now deprecated because it is basically a graph.
+- Updated Documentation of OmniTree. [TheOneHyer]
+
+  Added some more documentation and spruced up the rest
+  on OmniTree.
+- OmniTree: Finalized find_branches. [TheOneHyer]
+
+  OmniTree find_branches now contains the find_branches
+  and find_unique_branches functions rolled into one.
+  Contains 'labels' and 'unique' options to control
+  the functions behavior.
+- Added find_loops to OmniTree. [TheOneHyer]
+
+  OmniTree can now identify loops.
+- Changed ThreadCheck to CheckThreads in Docs. [TheOneHyer]
+
+  Documentation had incorrect class name.
+- Added Branch Function to OmniTree. [TheOneHyer]
+
+  OmniTree now has beta-testing functions for finding and return
+  tree structure. These methods are not yet final.
+- Added Documentation to argparse and omnitree. [TheOneHyer]
+
+  OmniTree, CheckThreads, and ParseCommas have additional
+  and/or rearranged docs.
+- Added add_children and add_parents to OmniTree. [TheOneHyer]
+
+  OmntiTree now has methods for attaching additional nodes
+  and avoiding duplciate node entries.
+- Changed conf.py and Added OmniTree Skeleton. [TheOneHyer]
+
+  OmntiTree now has some skeletal code. conf.py altered to make
+  docs look better.
+- Finished string.rst. [TheOneHyer]
+
+  string subpackaged now documented.
+- Changed Example Code. [TheOneHyer]
+
+  Docstrings example now have RST formatting for better rendering.
+- Added argparse.rst. [TheOneHyer]
+
+  Argparse subpackage docs now complete.
+- Added Trees Package. [TheOneHyer]
+
+  Created tress __init__ and empty omnitree.
+- Added index.rst. [TheOneHyer]
+
+  Made proper front page to docs.
+- Added Sphinx Skeleton. [TheOneHyer]
+
+  Sphinx config created to provided basis for docs.
 - Fixed test_autocorrect import. [TheOneHyer]
 
   imports in __init__ of string are rearranged

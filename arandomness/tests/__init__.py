@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-"""Allow relative imports for py.test
+"""Initializes tests package of arandomness
 
 Copyright:
     __init.py__  allow relative imports for py.test
@@ -24,5 +24,5 @@ __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
-__status__ = 'Alpha'
-__version__ = '0.1.0a4'
+__status__ = 'Production/Stable'
+__version__ = '1.0.0'

@@ -20,8 +20,8 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from arandomness.argparse import ParseCommas
 import argparse
+from ..argparse import ParseCommas
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
