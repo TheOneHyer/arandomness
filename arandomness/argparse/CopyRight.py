@@ -27,7 +27,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 
 class CopyRight(argparse.Action):
@@ -48,7 +48,7 @@ class CopyRight(argparse.Action):
     function is only called this for readability in code.
     """
 
-    def __init__(self, option_strings, dest, nargs=None, copyright_text=None,
+    def __init__(self, option_strings, dest, copyright_text=None, nargs=None,
                  **kwargs):
         """Initialize class and spawn self as Base Class w/o nargs
 
@@ -57,6 +57,8 @@ class CopyRight(argparse.Action):
                                    call this action
 
             dest (str): namespace reference to value
+
+            copyright_text (str): str to print
 
             nargs (str): number of args as special char or int
 
