@@ -7,7 +7,8 @@ argparse
 Introduction
 ------------
 
-The ``argparse`` subpackage of arandomness contains scripts and actions to
+The ``argparse`` subpackage of arandomness contains scripts and
+`actions <https://docs.python.org/3/library/argparse.html#action>`_ to
 expand the utility of Python's
 `argparse <https://docs.python.org/3/library/argparse.html>`_
 library.
@@ -16,10 +17,8 @@ library.
 CheckThreads
 ------------
 
-``CheckThreads`` is an
-`argparse action <https://docs.python.org/3/library/argparse.html#action>`_,
-as such, it is called as the value of the ``action`` argument in
-``argparse``. For example:
+``CheckThreads`` is an ``argparse`` ``action``, as such, it is called as the
+value of the ``action`` argument in ``argparse``. For example:
 
 .. code-block:: Python
 
@@ -73,6 +72,90 @@ API Documentation
    :members: __call__
 
 
+Open
+----
+
+``Open`` is an ``argparse`` ``action`` that seamlessly handles reading and
+writing compressed files using the
+`gzip <https://docs.python.org/2/library/gzip.html>`_,
+`bz2 <https://docs.python.org/2/library/bz2.html>`_, and
+`lzma <https://docs.python.org/3/library/lzma.html>`_ libraries. To do this,
+``Open`` actually exposes the arguments of each to libraries ``*File``
+function to the command line after automatically selecting the proper
+library based on the arguments it receives. Essentially, this ``action``
+operates in a read mode and a write/append mode. In read mode, when mode is
+equal to any read mode supported by the appropriate library such as ``r`` or
+``rb``, ``Open`` reads the first few bytes of the file to see what
+compression format the file uses and then opens the file with the
+corresponding in decompression algorithm. In write mode, basically when mode
+is set to anything else, ``Open`` just checks the file extension and maps it
+to the corresponding compression algorithm. If ``Open`` does not recognize
+the first few bytes of a file or a file extension, it defaults to reading
+and writing in plain text.
+
+As aforementioned, ``Open`` exposes the arguments of the underlying library.
+It does this by collecting arbitrary arguments, filtering them by the
+supported arguments of the ``*File`` functions, and only passing those
+arguments to the function. For example, ``GzipFile`` and ``BZ2File`` can
+control the level on compression via the argument ``compresslevel`` while
+``LZMAFile`` uses ``preset`` to control compression levels. In order to use
+these arguments at the ``argparse`` level, simply add them as options to
+``Open`` as follows:
+
+.. code-block:: Python
+
+    from arandomness.argparse import Open
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--gzip',
+                        action=Open,
+                        mode='r',
+                        type=str,
+                        compresslevel=9,
+                        help='compressed file to read')
+    parser.add_argument('--bz2',
+                        action=Open,
+                        mode='w',
+                        type=str,
+                        compresslevel=9
+                        help='compressed file to write')
+    parser.add_argument('--lzma',
+                        action=Open,
+                        mode='w',
+                        type=str,
+                        preset=9,
+                        help='compressed file to write')
+    args = parser.parse_args(['-i', 'input.gz', '-o', 'output.xz'])
+
+As stated, this works for any argument and arguments that aren't supported
+by the ``*File`` are silently ignored.
+
+Common use example:
+
+.. code-block:: Python
+
+    from arandomness.argparse import Open
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('-i', '--input',
+                        action=Open,
+                        mode='r',
+                        type=str,
+                        help='compressed file to read')
+    parser.add_argument('-o', '--output',
+                        action=Open,
+                        mode='w',
+                        type=str,
+                        help='compressed file to write')
+    args = parser.parse_args(['-i', 'input.gz', '-o', 'output.xz'])
+
+API Documentation
+=================
+
+.. autoclass:: arandomness.argparse.Open
+   :members: __call__
+
+
 ParseCommas
 ------------
 
@@ -88,11 +171,12 @@ resulting list as the value for the argument. For example:
     from arandomness.argparse import ParseCommas
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('-a', '--an-argument',
+    parser.add_argument('-a', '--an_argument',
                         action=ParseCommas,
                         type=str,
                         help='nargs using a string')
-    args = parser.parse_args()
+    args = parser.parse_args(['hello,world'])
+    print(args.an_argument)
 
 So the argument ``hello,world`` would be set as ``['hello', 'world']`` in args.
 

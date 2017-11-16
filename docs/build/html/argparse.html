@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>argparse &#8212; arandomness 0.1.0rc3 documentation</title>
+    <title>argparse &#8212; arandomness 0.1.0rc6 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.0rc3',
+        VERSION:     '0.1.0rc6',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -62,6 +62,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#checkthreads">CheckThreads</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#copyright">CopyRight</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#open">Open</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#parsecommas">ParseCommas</a></li>
 </ul>
 </li>
@@ -115,17 +116,16 @@ along with this program.  If not, see &lt;<a class="reference external" href="ht
 </dl>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">argparse</span></code> subpackage of arandomness contains scripts and actions to
+<p>The <code class="docutils literal"><span class="pre">argparse</span></code> subpackage of arandomness contains scripts and
+<a class="reference external" href="https://docs.python.org/3/library/argparse.html#action">actions</a> to
 expand the utility of Python’s
 <a class="reference external" href="https://docs.python.org/3/library/argparse.html">argparse</a>
 library.</p>
 </div>
 <div class="section" id="checkthreads">
 <h2>CheckThreads<a class="headerlink" href="#checkthreads" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">CheckThreads</span></code> is an
-<a class="reference external" href="https://docs.python.org/3/library/argparse.html#action">argparse action</a>,
-as such, it is called as the value of the <code class="docutils literal"><span class="pre">action</span></code> argument in
-<code class="docutils literal"><span class="pre">argparse</span></code>. For example:</p>
+<p><code class="docutils literal"><span class="pre">CheckThreads</span></code> is an <code class="docutils literal"><span class="pre">argparse</span></code> <code class="docutils literal"><span class="pre">action</span></code>, as such, it is called as the
+value of the <code class="docutils literal"><span class="pre">action</span></code> argument in <code class="docutils literal"><span class="pre">argparse</span></code>. For example:</p>
 <div class="highlight-Python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">arandomness.argparse</span> <span class="kn">import</span> <span class="n">CheckThreads</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
@@ -263,6 +263,80 @@ by commas</li>
 
 </div>
 </div>
+<div class="section" id="open">
+<h2>Open<a class="headerlink" href="#open" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">Open</span></code> is an <code class="docutils literal"><span class="pre">argparse</span></code> <code class="docutils literal"><span class="pre">action</span></code> that seamlessly handles reading and
+writing compressed files using the
+<a class="reference external" href="https://docs.python.org/2/library/gzip.html">gzip</a>,
+<a class="reference external" href="https://docs.python.org/2/library/bz2.html">bz2</a>, and
+<a class="reference external" href="https://docs.python.org/3/library/lzma.html">lzma</a> libraries. To do this,
+<code class="docutils literal"><span class="pre">Open</span></code> actually exposes the arguments of each to libraries <code class="docutils literal"><span class="pre">*File</span></code>
+function to the command line after automatically selecting the proper
+library based on the arguments it receives. Essentially, this <code class="docutils literal"><span class="pre">action</span></code>
+operates in a read mode and a write/append mode. In read mode, when mode is
+equal to any read mode supported by the appropriate library such as <code class="docutils literal"><span class="pre">r</span></code> or
+<code class="docutils literal"><span class="pre">rb</span></code>, <code class="docutils literal"><span class="pre">Open</span></code> reads the first few bytes of the file to see what
+compression format the file uses and then opens the file with the
+corresponding in decompression algorithm. In write mode, basically when mode
+is set to anything else, <code class="docutils literal"><span class="pre">Open</span></code> just checks the file extension and maps it
+to the corresponding compression algorithm. If <code class="docutils literal"><span class="pre">Open</span></code> does not recognize
+the first few bytes of a file or a file extension, it defaults to reading
+and writing in plain text.</p>
+<p>As aforementioned, <code class="docutils literal"><span class="pre">Open</span></code> exposes the arguments of the underlying library.
+It does this by collecting arbitrary arguments, filtering them by the
+supported arguments of the <code class="docutils literal"><span class="pre">*File</span></code> functions, and only passing those
+arguments to the function. For example, <code class="docutils literal"><span class="pre">GzipFile</span></code> and <code class="docutils literal"><span class="pre">BZ2File</span></code> can
+control the level on compression via the argument <code class="docutils literal"><span class="pre">compresslevel</span></code> while
+<code class="docutils literal"><span class="pre">LZMAFile</span></code> uses <code class="docutils literal"><span class="pre">preset</span></code> to control compression levels. In order to use
+these arguments at the <code class="docutils literal"><span class="pre">argparse</span></code> level, simply add them as options to
+<code class="docutils literal"><span class="pre">Open</span></code> as follows:</p>
+<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">arandomness.argparse</span> <span class="kn">import</span> <span class="n">Open</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--gzip&#39;</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="n">Open</span><span class="p">,</span>
+                    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                    <span class="n">compresslevel</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;compressed file to read&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--bz2&#39;</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="n">Open</span><span class="p">,</span>
+                    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                    <span class="n">compresslevel</span><span class="o">=</span><span class="mi">9</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;compressed file to write&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--lzma&#39;</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="n">Open</span><span class="p">,</span>
+                    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                    <span class="n">preset</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;compressed file to write&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">([</span><span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="s1">&#39;input.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="s1">&#39;output.xz&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>As stated, this works for any argument and arguments that aren’t supported
+by the <code class="docutils literal"><span class="pre">*File</span></code> are silently ignored.</p>
+<p>Common use example:</p>
+<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">arandomness.argparse</span> <span class="kn">import</span> <span class="n">Open</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="s1">&#39;--input&#39;</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="n">Open</span><span class="p">,</span>
+                    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;compressed file to read&#39;</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="s1">&#39;--output&#39;</span><span class="p">,</span>
+                    <span class="n">action</span><span class="o">=</span><span class="n">Open</span><span class="p">,</span>
+                    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+                    <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s1">&#39;compressed file to write&#39;</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">([</span><span class="s1">&#39;-i&#39;</span><span class="p">,</span> <span class="s1">&#39;input.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;-o&#39;</span><span class="p">,</span> <span class="s1">&#39;output.xz&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="section" id="id3">
+<h3>API Documentation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
 <div class="section" id="parsecommas">
 <h2>ParseCommas<a class="headerlink" href="#parsecommas" title="Permalink to this headline">¶</a></h2>
 <p>By default, <code class="docutils literal"><span class="pre">argparse</span></code> parses multiple arguments by spaces. While useful,
@@ -274,16 +348,17 @@ resulting list as the value for the argument. For example:</p>
 <div class="highlight-Python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">arandomness.argparse</span> <span class="kn">import</span> <span class="n">ParseCommas</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="vm">__doc__</span><span class="p">)</span>
-<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--an-argument&#39;</span><span class="p">,</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;-a&#39;</span><span class="p">,</span> <span class="s1">&#39;--an_argument&#39;</span><span class="p">,</span>
                     <span class="n">action</span><span class="o">=</span><span class="n">ParseCommas</span><span class="p">,</span>
                     <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
                     <span class="n">help</span><span class="o">=</span><span class="s1">&#39;nargs using a string&#39;</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">([</span><span class="s1">&#39;hello,world&#39;</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">an_argument</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>So the argument <code class="docutils literal"><span class="pre">hello,world</span></code> would be set as <code class="docutils literal"><span class="pre">['hello',</span> <span class="pre">'world']</span></code> in args.</p>
-<div class="section" id="id3">
-<h3>API Documentation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h3>API Documentation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <dl class="class">
 <dt id="arandomness.argparse.ParseCommas">
 <em class="property">class </em><code class="descclassname">arandomness.argparse.</code><code class="descname">ParseCommas</code><span class="sig-paren">(</span><em>option_strings</em>, <em>dest</em>, <em>nargs=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/argparse/ParseCommas.html#ParseCommas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.argparse.ParseCommas" title="Permalink to this definition">¶</a></dt>
