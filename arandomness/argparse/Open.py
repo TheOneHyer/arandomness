@@ -22,19 +22,10 @@ Copyright:
 
 import argparse
 from importlib import import_module
+from inspect import getfullargspec
+from os import linesep
+from warnings import warn
 
-modules = {
-    'bz2': 'BZ2File',
-    'gzip': 'GzipFile',
-    'lzma': 'LZMAFile',
-    'zipfile': 'ZipFile'
-}
-
-for package, mod in modules.items():
-    try:
-        import_module(mod, package=package)
-    except ImportError:
-        pass
 
 __author__ = 'Alex Hyer'
 __credit__ = 'Lauritz V. Thaulow'
@@ -42,7 +33,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Alpha'
-__version__ = '0.1.0a1'
+__version__ = '0.1.0a2'
 
 
 class Open(argparse.Action):
@@ -59,8 +50,7 @@ class Open(argparse.Action):
         **kwargs (various): optional arguments to pass to super call
     """
 
-    def __init__(self, option_strings, dest, comp_algo='txt', mode='r',
-                 nargs=None, **kwargs):
+    def __init__(self, option_strings, dest, mode='rb', nargs=None, **kwargs):
         """Initialize class and spawn self as Base Class w/o nargs
 
         Args:
@@ -79,10 +69,28 @@ class Open(argparse.Action):
             raise ValueError('nargs not allowed for Open')
 
         self.mode = mode.lower().strip()
-        self.comp_algo = comp_algo.lower().strip()
+        self.kwargs = kwargs
+
+        modules_to_import = {
+            'bz2': 'BZ2File',
+            'gzip': 'GzipFile',
+            'lzma': 'LZMAFile',
+            'zipfile': 'ZipFile'
+        }
+
+        self.modules = {}
+
+        for mod, _class in modules_to_import.items():
+            try:
+                self.modules[_class] = getattr(import_module(mod), _class)
+            except (ImportError, AttributeError) as e:
+                self.modules[_class] = open
+                warn('Cannot process {0} files due to following error:'
+                     '{1}{2}{1}Such files will open in text mode.'
+                     .format(mod, linesep, e))
 
         # Call self again but without nargs
-        super(Open, self).__init__(option_strings, dest, **kwargs)
+        super(Open, self).__init__(option_strings, dest)
 
     # Credits: https://stackoverflow.com/questions/13044562/
     # python-mechanism-to-identify-compressed-file-type-and-uncompress
@@ -97,49 +105,49 @@ class Open(argparse.Action):
             value (str): actual value specified by user
 
             option_string (str): argument flag used to call this function
-
-        Raises:
-            ValueError: if value does not map to a supported compression
-                        algorithm
         """
 
         filename = value
 
-        algo = open
+        algo = open  # Default to plaintext
 
         if self.mode not in ['r', 'rb']:
 
             algo_map = {
-                'bz2': BZ2File,
-                'gzip': GzipFile,
-                'lzma': LZMAFile,
-                'txt': open,
-                'zip': ZipFile
+                'bz2': self.modules['BZ2File'],
+                'gz': self.modules['GzipFile'],
+                'xz': self.modules['LZMAFile'],
+                'zip': self.modules['ZipFile']
             }
 
-            if self.comp_algo not in algo_map.keys():
-                raise ValueError('"{0}" not supported'.format(self.comp_algo))
-
-            algo = algo_map[self.comp_algo]
+            ext = value.split('.')[-1]
+            try:
+                algo = algo_map[ext]
+            except KeyError:
+                pass
 
         else:
 
             file_sigs = {
-                '\x42\x5a\x68': BZ2File,
-                '\x1f\x8b\x08': GzipFile,
-                '\xff\x4c\x5a\x4d\x41\x00': LZMAFile,
-                '\x50\x4b\x03\x04': ZipFile
+                b'\x42\x5a\x68': self.modules['BZ2File'],
+                b'\x1f\x8b\x08': self.modules['GzipFile'],
+                b'\xff\x4c\x5a\x4d\x41\x00': self.modules['LZMAFile'],
+                b'\x50\x4b\x03\x04': self.modules['ZipFile']
                 }
 
             max_len = max(len(x) for x in file_sigs.keys())
 
             with open(filename, 'rb') as in_handle:
-                start = str(in_handle.read(max_len))
+                start = in_handle.read(max_len)
                 for sig in file_sigs.keys():
                     if start.startswith(sig):
                         algo = file_sigs[sig]
                         break
 
-        handle = algo(value, mode=self.mode, **kwargs)
+        algo_args = getfullargspec(algo).args
+        good_args = set(self.kwargs.keys()).intersection(algo_args)
+        _kwargs = {arg: self.kwargs[arg] for arg in good_args}
+
+        handle = algo(value, mode=self.mode, **_kwargs)
 
         setattr(namespace, self.dest, handle)

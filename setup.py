@@ -28,7 +28,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Alpha'
-__version__ = '0.1.0rc4'
+__version__ = '0.1.0rc5'
 
 setup(name='arandomness',
       version=__version__,

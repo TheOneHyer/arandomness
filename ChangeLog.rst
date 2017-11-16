@@ -4,6 +4,12 @@ Changelog
 
 (unreleased)
 ------------
+- Added Open Alpha. [TheOneHyer]
+
+  Added new Argparse Action for opening compressed files.
+  I'm totally abusing rc versioning.
+- Fixed Typo in CopyRight Documentation. [TheOneHyer]
+- Added Documentation for CopyRight on RTD. [TheOneHyer]
 - Added CopyRight. [TheOneHyer]
 
   CopyRight added to print copyright messages and exit. Has a

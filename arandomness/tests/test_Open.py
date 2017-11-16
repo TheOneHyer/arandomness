@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-"""Test arandomness' CopyRight
+"""<description>
 
 Copyright:
-    test_ParseCommas.py  test arandomness' CopyRight
+    <script name>  <description>
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -21,34 +21,37 @@ Copyright:
 """
 
 import argparse
-from ..argparse import CopyRight
-from io import StringIO
-import sys
+from ..argparse import Open
+import gzip
+from tempfile import NamedTemporaryFile
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
-__status__ = 'Production/Stable'
-__version__ = '1.0.1'
+__status__ = 'Planning'
+__version__ = '0.1.0a1'
 
 
-def test_ParseCommas():
-    """Test arandomness' CopyRight with a simulated command line"""
+def test_Open():
+    """Test arandomness' Open ability to read and write files"""
 
-    # Capture STDOUT for later testing
-    capture = StringIO()
-    sys.stdout = capture
-
-    # Stop parser.exit() in CopyRight from exiting program
-    sys.exit = lambda *x: None
-
-    # Create parser
+    # Test GZIP write
+    temp = NamedTemporaryFile(delete=False, suffix='.gz')
     parser = argparse.ArgumentParser()
-    parser.add_argument('test',
-                        action=CopyRight,
-                        copyright_text='test')
-    parser.parse_args()
+    parser.add_argument('test_gzip',
+                        action=Open,
+                        mode='wb')
+    args = parser.parse_args([temp.name])
+    args.test_gzip.write(b'gzip')
+    args.test_gzip.close()
 
-    # Test printed "copyright"
-    assert capture.getvalue().strip() == 'test'
+    assert gzip.decompress(open(temp.name, 'rb').read()).strip() == b'gzip'
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('test_gzip',
+                        action=Open,
+                        mode='rb')
+    args = parser.parse_args([temp.name])
+
+    assert args.test_gzip.read().strip() == b'gzip'

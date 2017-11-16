@@ -27,7 +27,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.0.3'
+__version__ = '1.0.4'
 
 
 class ParseCommas(argparse.Action):
@@ -96,7 +96,7 @@ class ParseCommas(argparse.Action):
             raise TypeError('{0} is not a string'.format(value))
 
         try:
-            arguments = filter(None, value.split(','))
+            arguments = value.split(',')
         except:
             raise ValueError('{0} could not be parsed by commas'
                              .format(value))
