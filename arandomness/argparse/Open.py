@@ -23,7 +23,9 @@ Copyright:
 import argparse
 from importlib import import_module
 from inspect import getfullargspec
+import io
 from os import linesep
+import sys
 from warnings import warn
 
 
@@ -33,7 +35,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 
 class Open(argparse.Action):
@@ -69,7 +71,7 @@ class Open(argparse.Action):
             raise ValueError('nargs not allowed for Open')
 
         # Call self again but without nargs
-        super(Open, self).__init__(option_strings, dest)
+        super(Open, self).__init__(option_strings, dest, **kwargs)
 
         # Store and establish variables used in __call__
         self.kwargs = kwargs
@@ -113,7 +115,7 @@ class Open(argparse.Action):
 
         filename = value  # For readability
 
-        algo = open  # Default to plaintext
+        algo = io.open  # Default to plaintext
 
         # Capture any mode that isn't read, such as write or append
         if self.mode.lstrip('U')[0] != 'r':
@@ -142,19 +144,25 @@ class Open(argparse.Action):
 
             max_len = max(len(x) for x in file_sigs.keys())
 
-            # Check beginning of file for signature
-            with open(filename, 'rb') as in_handle:
-                start = in_handle.read(max_len)
-                for sig in file_sigs.keys():
-                    if start.startswith(sig):
-                        algo = file_sigs[sig]
-                        break
+
+            # Check if file is connected to a tty device
+            if sys.stdin.isatty():
+                # Check beginning of file for signature
+                with io.open(filename, 'rb') as in_handle:
+                    start = in_handle.read(max_len)
+                    for sig in file_sigs.keys():
+                        if start.startswith(sig):
+                            algo = file_sigs[sig]
+                            break
+
 
         # Filter all **kwargs by the args accepted by the compression algo
         algo_args = set(getfullargspec(algo).args)
         good_args = set(self.kwargs.keys()).intersection(algo_args)
         _kwargs = {arg: self.kwargs[arg] for arg in good_args}
 
+
         # Open the file using parameters defined above and store in namespace
         handle = algo(value, mode=self.mode, **_kwargs)
+            
         setattr(namespace, self.dest, handle)
