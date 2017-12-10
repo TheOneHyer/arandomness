@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-"""Parse argparse-passed command-line arguments by commas
+"""Parse argparse-passed command-line arguments by "separator"
 
 Copyright:
-    __init.py__  parse argparse-passed command-line arguments by commas
+    __init.py__  parse argparse-passed command-line arguments by "separator"
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -27,11 +27,12 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.0.4'
+__version__ = '1.1.0'
 
 
-class ParseCommas(argparse.Action):
-    """Argparse Action that parses arguments by commas
+class ParseSeparator(argparse.Action):
+    """Argparse Action that parses arguments by a user-supplied separator
+       character
 
     Attributes:
         option_strings (list): list of str giving command line flags that
@@ -39,22 +40,26 @@ class ParseCommas(argparse.Action):
 
         dest (str): Namespace reference to value
 
+        sep (str): arbitrary separator character
+
         nargs (str): number of args as special char or int
 
         **kwargs (various): optional arguments to pass to super call
     """
 
-    def __init__(self, option_strings, dest, nargs=None, **kwargs):
+    def __init__(self, option_strings, dest, sep=',', nargs=None, **kwargs):
         """Initialize class and spawn self as Base Class w/o nargs
 
-        This class will "make" nargs by parsing the commas so it only accepts
-        a single string, not a list.
+        This class will "make" nargs by parsing the separator so it only
+        accepts a single string, not a list.
 
         Args:
             option_strings (list): list of str giving command line flags that
                                    call this action
 
             dest (str): Namespace reference to value
+
+            sep (str): arbitrary separator character
 
             nargs (str): number of args as special char or int
 
@@ -63,15 +68,20 @@ class ParseCommas(argparse.Action):
 
         # Only accept a single value to analyze
         if nargs is not None:
-            raise ValueError('nargs not allowed for ParseCommas')
+            raise ValueError('nargs not allowed for ParseSeparator')
 
         # Call self again but without nargs
-        super(ParseCommas, self).__init__(option_strings, dest, **kwargs)
+        super(ParseSeparator, self).__init__(option_strings, dest, **kwargs)
 
-    def __call__(self, parser, namespace, value, option_string=None):
-        """Called by Argparse when user specifies a comma-separated list
+        # Store and establish variables used in __call__
+        self.kwargs = kwargs
+        self.sep = sep
 
-        Simply splits a list by commas and adds the values to namespace.
+    def __call__(self, parser, namespace, value, option_string=None, **kwargs):
+        """Called by Argparse when user specifies a character-separated list
+
+        Simply splits a list by the supplied character and adds the values to 
+        namespace.
 
         Args:
             parser (ArgumentParser): parser used to generate values
@@ -86,7 +96,7 @@ class ParseCommas(argparse.Action):
             TypeError: if value is not a string
 
             ValueError: if value cannot, for any reason, be parsed
-                        by commas
+                        by the separator character
         """
 
         # This try/except should already be taken care of by Argparse
@@ -96,9 +106,9 @@ class ParseCommas(argparse.Action):
             raise TypeError('{0} is not a string'.format(value))
 
         try:
-            arguments = value.split(',')
+            arguments = value.split(self.sep)
         except:
-            raise ValueError('{0} could not be parsed by commas'
-                             .format(value))
+            raise ValueError('{0} could not be parsed by {1}'
+                             .format(value, self.sep))
 
         setattr(namespace, self.dest, arguments)
