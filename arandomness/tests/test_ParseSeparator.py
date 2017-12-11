@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-"""Test arandomness' ParseCommas
+"""Test arandomness' ParseSeparator
 
 Copyright:
-    test_ParseCommas.py  test arandomness' ParseCommas
+    test_ParseSeparator.py  test arandomness' ParseSeparator
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@ Copyright:
 """
 
 import argparse
-from ..argparse import ParseCommas
+from ..argparse import ParseSeparator
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
@@ -31,13 +31,13 @@ __status__ = 'Production/Stable'
 __version__ = '1.0.1'
 
 
-def test_ParseCommas():
-    """Test arandomness' ParseCommas with a simulated command line"""
+def test_ParseSeparator():
+    """Test arandomness' ParseSeparator with a simulated command line"""
 
     # Create parser
     parser = argparse.ArgumentParser()
     parser.add_argument('test',
-                        action=ParseCommas)
+                        action=ParseSeparator)
 
     # Test comma parsing
     args = parser.parse_args(['this,is,a,test'])
