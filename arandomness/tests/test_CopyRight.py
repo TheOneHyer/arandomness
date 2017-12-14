@@ -3,7 +3,7 @@
 """Test arandomness' CopyRight
 
 Copyright:
-    test_ParseCommas.py  test arandomness' CopyRight
+    test_CopyRight.py  test arandomness' CopyRight
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ __status__ = 'Production/Stable'
 __version__ = '1.0.1'
 
 
-def test_ParseCommas():
+def test_CopyRight():
     """Test arandomness' CopyRight with a simulated command line"""
 
     # Capture STDOUT for later testing

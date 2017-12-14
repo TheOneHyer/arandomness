@@ -23,7 +23,7 @@ Copyright:
 from .CheckThreads import CheckThreads
 from .CopyRight import CopyRight
 from .Open import Open
-from .ParseCommas import ParseCommas
+from .ParseSeparator import ParseSeparator
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'

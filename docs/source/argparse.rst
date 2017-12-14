@@ -156,24 +156,26 @@ API Documentation
    :members: __call__
 
 
-ParseCommas
+ParseSeparator
 ------------
 
 By default, ``argparse`` parses multiple arguments by spaces. While useful,
 it can sometimes be more practical, or at least easier to read, arguments
-parsed by commas when multiple arguments make use of
-`nargs <https://docs.python.org/3/library/argparse.html#nargs>`_.
-``ParseCommas`` simply takes a string, splits it by commas, and sets the
-resulting list as the value for the argument. For example:
+parsed by commas or some other separator character when multiple arguments 
+make use of `nargs <https://docs.python.org/3/library/argparse.html#nargs>`_.
+``ParseSeparator`` simply takes a string, splits it by the user-defined 
+separator, and sets the resulting list as the value for the argument. For 
+example:
 
 .. code-block:: Python
 
-    from arandomness.argparse import ParseCommas
+    from arandomness.argparse import ParseSeparator
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('-a', '--an_argument',
-                        action=ParseCommas,
+                        action=ParseSeparator,
                         type=str,
+                        sep=',',
                         help='nargs using a string')
     args = parser.parse_args(['hello,world'])
     print(args.an_argument)
@@ -183,5 +185,5 @@ So the argument ``hello,world`` would be set as ``['hello', 'world']`` in args.
 API Documentation
 =================
 
-.. autoclass:: arandomness.argparse.ParseCommas
+.. autoclass:: arandomness.argparse.ParseSeparator
    :members: __call__
