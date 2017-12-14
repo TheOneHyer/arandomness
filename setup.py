@@ -28,13 +28,13 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '0.1.0'
+__version__ = '0.2.0a1'
 
 setup(name='arandomness',
       version=__version__,
       description='An arandom assortment of random modules',
       classifiers=[
-          'Development Status :: 5 - Production/Stable',
+          'Development Status :: 3 - Alpha',
           'Intended Audience :: Developers',
           'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
           'Natural Language :: English',

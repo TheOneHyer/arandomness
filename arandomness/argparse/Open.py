@@ -34,8 +34,8 @@ __credit__ = 'Lauritz V. Thaulow'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
-__status__ = 'Production/Stable'
-__version__ = '1.0.1'
+__status__ = 'Alpha'
+__version__ = '2.0.0a1'
 
 
 class Open(argparse.Action):
