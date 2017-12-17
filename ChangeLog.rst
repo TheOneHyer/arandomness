@@ -4,6 +4,12 @@ Changelog
 
 (unreleased)
 ------------
+- Renamed string Subpackage to str. [TheOneHyer]
+
+  In compliance with arandomness only supporting Python 3.X,
+  the string package has been renamed to str. This more clearly
+  communicates that this subpackage extends Python 3's str
+  libraries and not bytes.
 - Changed to Alpha Version. [TheOneHyer]
 - Merge pull request #1 from cnthornton/master. [Alex Hyer]
 

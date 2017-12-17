@@ -35,7 +35,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Alpha'
-__version__ = '2.0.0a1'
+__version__ = '2.0.0a3'
 
 
 class Open(argparse.Action):
@@ -113,12 +113,16 @@ class Open(argparse.Action):
                                 compression algorithm
         """
 
-        filename = value  # For readability
+        fileobject = value  # For readability
 
-        algo = io.open  # Default to plaintext
+        def trans(fileobj=None, *args, **kwargs):
+            return io.TextIOWrapper(fileobj)
+
+        algo = io.open
+        write_mode = False if self.mode.lstrip('U')[0] == 'r' else True
 
         # Capture any mode that isn't read, such as write or append
-        if self.mode.lstrip('U')[0] != 'r':
+        if write_mode is True:
 
             algo_map = {
                 'bz2': self.modules['BZ2File'],
@@ -127,7 +131,7 @@ class Open(argparse.Action):
             }
 
             # Base compression algorithm on file extension
-            ext = value.split('.')[-1]
+            ext = fileobject.split('.')[-1]
             try:
                 algo = algo_map[ext]
             except KeyError:
@@ -135,6 +139,8 @@ class Open(argparse.Action):
 
         # Basically read mode
         else:
+
+            algo = trans
 
             file_sigs = {
                 b'\x42\x5a\x68': self.modules['BZ2File'],
@@ -144,25 +150,26 @@ class Open(argparse.Action):
 
             max_len = max(len(x) for x in file_sigs.keys())
 
-
-            # Check if file is connected to a tty device
-            if sys.stdin.isatty():
-                # Check beginning of file for signature
-                with io.open(filename, 'rb') as in_handle:
-                    start = in_handle.read(max_len)
-                    for sig in file_sigs.keys():
-                        if start.startswith(sig):
-                            algo = file_sigs[sig]
-                            break
-
+            io.DEFAULT_BUFFER_SIZE = 8192
+            fileobject = io.BufferedReader(io.open(fileobject, 'rb'))
+            start = fileobject.peek(max_len)
+            for sig in file_sigs.keys():
+                if start.startswith(sig):
+                    algo = file_sigs[sig]
+                    break
 
         # Filter all **kwargs by the args accepted by the compression algo
         algo_args = set(getfullargspec(algo).args)
         good_args = set(self.kwargs.keys()).intersection(algo_args)
         _kwargs = {arg: self.kwargs[arg] for arg in good_args}
 
-
         # Open the file using parameters defined above and store in namespace
-        handle = algo(value, mode=self.mode, **_kwargs)
+        if write_mode is True:
+            handle = algo(fileobject, mode=self.mode, **_kwargs)
+        else:
+            try:
+                handle = algo(fileobj=fileobject, mode=self.mode, **_kwargs)
+            except TypeError:
+                handle = algo(fileobject, mode=self.mode, **_kwargs)
             
         setattr(namespace, self.dest, handle)
