@@ -20,7 +20,7 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from arandomness.string import max_substring
+from arandomness.str import max_substring
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'

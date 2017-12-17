@@ -4,6 +4,29 @@ Changelog
 
 (unreleased)
 ------------
+- Changed to Alpha Version. [TheOneHyer]
+- Merge pull request #1 from cnthornton/master. [Alex Hyer]
+
+  Mods to ParseCommas and Open argparse extensions - will be edited quickly
+- Fixed ParseSeparator testing script. [Christopher Thornton]
+- Added support for piping in Open.py. [Christopher Thornton]
+- Renamed and generalized ParseCommas so that it will split arguments by
+  any arbitray character. [Christopher Thornton]
+- Released Version 0.1.0. [TheOneHyer]
+
+
+0.1.0 (2017-11-16)
+------------------
+- Finished Open, test_Open, and Open Documentation. [TheOneHyer]
+
+  Finished Open function, unit tests, and RTD documentation
+  for Open.
+- Added Open and test_Open. [TheOneHyer]
+
+  Added Open, the argparse action for opening and writing to multiple
+  compressed file types seemlessly. Added test for gzip functionality,
+  which worked. Still need to test other compressed formats and add
+  documentation.
 - Added Open Alpha. [TheOneHyer]
 
   Added new Argparse Action for opening compressed files.

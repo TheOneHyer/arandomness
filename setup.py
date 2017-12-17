@@ -28,7 +28,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '0.2.0a1'
+__version__ = '0.2.0a2'
 
 setup(name='arandomness',
       version=__version__,
@@ -52,7 +52,7 @@ setup(name='arandomness',
       packages=[
           'arandomness',
           'arandomness.argparse',
-          'arandomness.string',
+          'arandomness.str',
           'arandomness.trees'
       ],
       requires=[

@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-"""Initializes string package of arandomness
+"""Initializes str package of arandomness
 
 Copyright:
-    __init__.py  initializes string package of arandomness
+    __init__.py  initializes str package of arandomness
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -20,13 +20,13 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from arandomness.string.max_substring import max_substring
-from arandomness.string.print_columns import print_columns
+from arandomness.str.max_substring import max_substring
+from arandomness.str.print_columns import print_columns
 
 # I hate that this is not in alphabetical order, but it has to be in
 # this order for relative imports to work.
 # https://68.media.tumblr.com/77499dd5fdb75637bc6be2e539f5ea5f/tumblr_inline_osficvX4uf1qgozmu_540.gif
-from arandomness.string.autocorrect import autocorrect
+from arandomness.str.autocorrect import autocorrect
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'

@@ -43,7 +43,7 @@ def max_substring(words, position=0, _last_letter=''):
                                 you are doing
 
     Returns:
-        unicode: max string common to all words
+        unicode: max str common to all words
 
     Examples:
         .. code-block:: Python

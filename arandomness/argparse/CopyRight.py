@@ -88,7 +88,7 @@ class CopyRight(argparse.Action):
             option_string (str): argument flag used to call this function
 
         Raises:
-            TypeError: if value is not a string
+            TypeError: if value is not a str
 
             ValueError: if value cannot, for any reason, be parsed
                         by commas

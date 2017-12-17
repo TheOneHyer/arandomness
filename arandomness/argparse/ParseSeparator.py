@@ -51,7 +51,7 @@ class ParseSeparator(argparse.Action):
         """Initialize class and spawn self as Base Class w/o nargs
 
         This class will "make" nargs by parsing the separator so it only
-        accepts a single string, not a list.
+        accepts a single str, not a list.
 
         Args:
             option_strings (list): list of str giving command line flags that
@@ -93,7 +93,7 @@ class ParseSeparator(argparse.Action):
             option_string (str): argument flag used to call this function
 
         Raises:
-            TypeError: if value is not a string
+            TypeError: if value is not a str
 
             ValueError: if value cannot, for any reason, be parsed
                         by the separator character
@@ -103,7 +103,7 @@ class ParseSeparator(argparse.Action):
         try:
             assert type(value) is str
         except AssertionError:
-            raise TypeError('{0} is not a string'.format(value))
+            raise TypeError('{0} is not a str'.format(value))
 
         try:
             arguments = value.split(self.sep)
