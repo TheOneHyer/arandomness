@@ -35,7 +35,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Alpha'
-__version__ = '2.0.0a3'
+__version__ = '2.0.0a4'
 
 
 class Open(argparse.Action):
@@ -70,14 +70,18 @@ class Open(argparse.Action):
         if nargs is not None:
             raise ValueError('nargs not allowed for Open')
 
-        # Call self again but without nargs
+        # Call self again but without nargs, considering the above, I don't
+        # know why this is needed, but it is
         super(Open, self).__init__(option_strings, dest, **kwargs)
 
         # Store and establish variables used in __call__
-        self.kwargs = kwargs
+        self.algo = io.open  # Only used as io.open in write mode
+        self.kwargs = kwargs  # Pass along unused args
         self.mode = mode.lower().strip()
-        self.modules = {}
+        self.modules = {}  # Later populated by compression algorithms
+        self.write_mode = False if self.mode.lstrip('U')[0] == 'r' else True
 
+        # Currently supported compression algorithms
         modules_to_import = {
             'bz2': 'BZ2File',
             'gzip': 'GzipFile',
@@ -113,63 +117,60 @@ class Open(argparse.Action):
                                 compression algorithm
         """
 
-        fileobject = value  # For readability
+        fileobject = value  # For readability, currently a str
 
-        def trans(fileobj=None, *args, **kwargs):
-            return io.TextIOWrapper(fileobj)
+        self.kwargs['mode'] = self.mode  # Added for later filtering
 
-        algo = io.open
-        write_mode = False if self.mode.lstrip('U')[0] == 'r' else True
+        # Write mode
+        if self.write_mode is True:
 
-        # Capture any mode that isn't read, such as write or append
-        if write_mode is True:
-
+            # Map file extensions to decompression classes
             algo_map = {
                 'bz2': self.modules['BZ2File'],
                 'gz':  self.modules['GzipFile'],
                 'xz':  self.modules['LZMAFile']
             }
 
-            # Base compression algorithm on file extension
+            # Determine the compression algorithm via the file extension
             ext = fileobject.split('.')[-1]
             try:
-                algo = algo_map[ext]
+                self.algo = algo_map[ext]
             except KeyError:
                 pass
 
-        # Basically read mode
+        # Read mode
         else:
 
-            algo = trans
+            self.algo = io.TextIOWrapper  # Default to plaintext buffer
 
+            # Magic headers of encryption formats
             file_sigs = {
                 b'\x42\x5a\x68': self.modules['BZ2File'],
                 b'\x1f\x8b\x08': self.modules['GzipFile'],
                 b'\xfd7zXZ\x00': self.modules['LZMAFile']
                 }
 
-            max_len = max(len(x) for x in file_sigs.keys())
-
-            io.DEFAULT_BUFFER_SIZE = 8192
+            # Open the file, buffer it, and identify the compression algorithm
             fileobject = io.BufferedReader(io.open(fileobject, 'rb'))
+            max_len = max(len(x) for x in file_sigs.keys())
             start = fileobject.peek(max_len)
             for sig in file_sigs.keys():
                 if start.startswith(sig):
-                    algo = file_sigs[sig]
-                    break
+                    self.algo = file_sigs[sig]
+                    break  # Stop iterating once a good signature is found
 
-        # Filter all **kwargs by the args accepted by the compression algo
-        algo_args = set(getfullargspec(algo).args)
+        # Filter all **kwargs by the args accepted by the compression algorithm
+        algo_args = set(getfullargspec(self.algo).args)
         good_args = set(self.kwargs.keys()).intersection(algo_args)
         _kwargs = {arg: self.kwargs[arg] for arg in good_args}
 
         # Open the file using parameters defined above and store in namespace
-        if write_mode is True:
-            handle = algo(fileobject, mode=self.mode, **_kwargs)
+        if self.write_mode is True:
+            handle = self.algo(fileobject, **_kwargs)
         else:
-            try:
-                handle = algo(fileobj=fileobject, mode=self.mode, **_kwargs)
-            except TypeError:
-                handle = algo(fileobject, mode=self.mode, **_kwargs)
-            
+            try:  # For algorithms that need to be explicitly given a fileobj
+                handle = self.algo(fileobj=fileobject, **_kwargs)
+            except TypeError:  # For algorithms that detect file objects
+                handle = self.algo(fileobject, **_kwargs)
+
         setattr(namespace, self.dest, handle)
