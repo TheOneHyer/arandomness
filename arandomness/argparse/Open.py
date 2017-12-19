@@ -20,12 +20,12 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import argparse
+from arandomness.files import Open as _open
+from argparse import Action
 from importlib import import_module
 from inspect import getfullargspec
 import io
 from os import linesep
-import sys
 from warnings import warn
 
 
@@ -38,7 +38,7 @@ __status__ = 'Alpha'
 __version__ = '2.0.0a4'
 
 
-class Open(argparse.Action):
+class Open(Action, _open):
     """Argparse Action that detects and opens compressed files for rw
 
     Attributes:
