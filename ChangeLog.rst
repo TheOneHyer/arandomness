@@ -4,6 +4,21 @@ Changelog
 
 (unreleased)
 ------------
+- Added files Subpackage and Open. [TheOneHyer]
+
+  Added a new subpackage called files with the
+  module Open. These are for steps regarding both
+  supporting and streams and increasing the
+  apllicability of Open.
+- Streamlined Open Code. [TheOneHyer]
+
+  Open's code now has less redundancy and more documentation.
+  More testing for piping support is needed in test_Open.
+- Added BUffering to Open. [TheOneHyer]
+
+  Open now buffers read mode input with the goal
+  of eventually supporting piping. These current changes
+  past py.test but will require more testing.
 - Renamed string Subpackage to str. [TheOneHyer]
 
   In compliance with arandomness only supporting Python 3.X,

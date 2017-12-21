@@ -20,7 +20,6 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from arandomness.files import Open as _open
 from argparse import Action
 from importlib import import_module
 from inspect import getfullargspec
@@ -35,10 +34,10 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Alpha'
-__version__ = '2.0.0a4'
+__version__ = '2.0.0a5'
 
 
-class Open(Action, _open):
+class Open(Action):
     """Argparse Action that detects and opens compressed files for rw
 
     Attributes:

@@ -32,8 +32,8 @@ __credit__ = 'Lauritz V. Thaulow'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
-__status__ = 'Alpha'
-__version__ = '2.0.0a4'
+__status__ = 'Beta'
+__version__ = '2.0.0b1'
 
 
 # Credits: https://stackoverflow.com/questions/13044562/
@@ -95,9 +95,9 @@ def Open(fileobj, mode='rb', **kwargs):
             }
 
         # Open the file, buffer it, and identify the compression algorithm
-        fileobject = io.BufferedReader(io.open(fileobj, 'rb'))
+        fileobj = io.BufferedReader(io.open(fileobj, 'rb'))
         max_len = max(len(x) for x in file_sigs.keys())
-        start = fileobject.peek(max_len)
+        start = fileobj.peek(max_len)
         for sig in file_sigs.keys():
             if start.startswith(sig):
                 algo = file_sigs[sig]
