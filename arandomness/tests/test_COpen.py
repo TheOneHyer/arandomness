@@ -3,7 +3,7 @@
 """Test arandomness' Open argparse action
 
 Copyright:
-    test_Open.py  test arandomness' Open argparse action
+    test_COpen.py  test arandomness' COpen argparse action
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@ Copyright:
 """
 
 import argparse
-from ..argparse import Open
+from ..argparse import COpen
 import bz2
 import gzip
 import lzma
@@ -32,17 +32,17 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.0.0'
+__version__ = '1.1.0'
 
 
-def test_Open():
+def test_COpen():
     """Test arandomness' Open ability to read and write files"""
 
     # Test BZIP2 write
     temp = NamedTemporaryFile(delete=False, suffix='.bz2')
     parser = argparse.ArgumentParser()
     parser.add_argument('test_bzip',
-                        action=Open,
+                        action=COpen,
                         mode='wb')
     args = parser.parse_args([temp.name])
     args.test_bzip.write(b'bzip2')
@@ -53,7 +53,7 @@ def test_Open():
     # Test BZIP2 read
     parser = argparse.ArgumentParser()
     parser.add_argument('test_bzip',
-                        action=Open,
+                        action=COpen,
                         mode='rb')
     args = parser.parse_args([temp.name])
 
@@ -63,7 +63,7 @@ def test_Open():
     temp = NamedTemporaryFile(delete=False, suffix='.gz')
     parser = argparse.ArgumentParser()
     parser.add_argument('test_gzip',
-                        action=Open,
+                        action=COpen,
                         mode='wb')
     args = parser.parse_args([temp.name])
     args.test_gzip.write(b'gzip')
@@ -74,7 +74,7 @@ def test_Open():
     # Test GZIP read
     parser = argparse.ArgumentParser()
     parser.add_argument('test_gzip',
-                        action=Open,
+                        action=COpen,
                         mode='rb')
     args = parser.parse_args([temp.name])
 
@@ -84,7 +84,7 @@ def test_Open():
     temp = NamedTemporaryFile(delete=False, suffix='.xz')
     parser = argparse.ArgumentParser()
     parser.add_argument('test_lzma',
-                        action=Open,
+                        action=COpen,
                         mode='wb')
     args = parser.parse_args([temp.name])
     args.test_lzma.write(b'lzma')
@@ -95,7 +95,7 @@ def test_Open():
     # Test LZMA read
     parser = argparse.ArgumentParser()
     parser.add_argument('test_lzma',
-                        action=Open,
+                        action=COpen,
                         mode='rb')
     args = parser.parse_args([temp.name])
 
@@ -105,7 +105,7 @@ def test_Open():
     temp = NamedTemporaryFile(delete=False, suffix='.txt')
     parser = argparse.ArgumentParser()
     parser.add_argument('test_txt',
-                        action=Open,
+                        action=COpen,
                         mode='w')
     args = parser.parse_args([temp.name])
     args.test_txt.write('txt')
@@ -116,7 +116,7 @@ def test_Open():
     # Test txt read
     parser = argparse.ArgumentParser()
     parser.add_argument('test_txt',
-                        action=Open,
+                        action=COpen,
                         mode='r')
     args = parser.parse_args([temp.name])
 

@@ -22,7 +22,7 @@ Copyright:
 
 from .CheckThreads import CheckThreads
 from .CopyRight import CopyRight
-from .Open import Open
+from .COpen import COpen
 from .ParseSeparator import ParseSeparator
 
 __author__ = 'Alex Hyer'
@@ -30,4 +30,4 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.1.0'
+__version__ = '1.2.0'
