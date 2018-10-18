@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-"""<description>
+"""copen detects and opens compressed files for reading and writing.
 
 Copyright:
-    <script name>  <description>
+    copen.py  Detects and opens compressed files for reading and writing.
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -32,14 +32,42 @@ __credit__ = 'Lauritz V. Thaulow'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
-__status__ = 'Beta'
-__version__ = '2.0.0b1'
+__status__ = 'Production/Stable'
+__version__ = '2.0.0'
 
 
 # Credits: https://stackoverflow.com/questions/13044562/
 # python-mechanism-to-identify-compressed-file-type-and-uncompress
 def copen(fileobj, mode='rb', **kwargs):
-    """"""
+    """Detects and opens compressed file for reading and writing.
+
+    Args:
+
+        fileobj: any File-like object supported by an underlying compression
+                 algorithm
+
+        mode: mode to open fileobj with
+
+        **kwargs: keyword-arguments to pass to the compression algorithm
+
+    Returns:
+        file: TextWrapper if no compression, else returns appropriate
+              wrapper for the compression type
+
+    Example:
+        .. code-block:: Python
+
+            >>> from tempfile import NamedTemporaryFile
+            >>> # Write compressed file
+            >>> temp = NamedTemporaryFile(delete=False, suffix='.bz2')
+            >>> test_bz2 = copen(temp.name, 'wb')
+            >>> test_bz2.write(b'bzip2')
+            >>> test_bz2.close()
+            >>> # Read compressed bzip file
+            >>> test_bz2 = copen(temp.name, 'rb')
+            >>> test_bz2.read()
+            b'bzip2'
+    """
 
     algo = io.open  # Only used as io.open in write mode
     mode = mode.lower().strip()
@@ -63,7 +91,7 @@ def copen(fileobj, mode='rb', **kwargs):
             warn('Cannot process {0} files due to following error:'
                  '{1}{2}{1}You will need to install the {0} library to '
                  'properly use these files. Currently, such files will '
-                 'open in text mode.'.format(mod, linesep, e))
+                 'open in "text" mode.'.format(mod, linesep, e))
 
     # Write mode
     if write_mode is True:

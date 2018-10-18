@@ -4,6 +4,26 @@ Changelog
 
 (unreleased)
 ------------
+- Renamed files Open to copen. [TheOneHyer]
+
+  The Open class of the files subpackage has not been renamed to copen
+  across the board to improve readability of code.
+- Examples Added to COpen. [TheOneHyer]
+
+  COpen now has a working read and write example.
+- Streamlined COpen Codebase. [TheOneHyer]
+
+  Excess code removed from COpen.
+- Renamed Open to COpen and Removed Redundant Code. [TheOneHyer]
+
+  Open in argparse subpackage is now called COpen to improve readability
+  of code. COpen now calls Open from files, which also needs a rename.
+- Fixed files Open. [TheOneHyer]
+
+  The files subpackage Open is now passing tests.
+  As is, it appears to work, but it needs to be tested
+  for the ability to work while streaming. All versions
+  now moved to beta as a result.
 - Added files Subpackage and Open. [TheOneHyer]
 
   Added a new subpackage called files with the

@@ -44,7 +44,7 @@ def autocorrect(query, possibilities, delta=0.75):
 
         possibilities (list): list of unicodes of possible answers for query
 
-        delta (float): minimum delta similarity between query and
+        delta (float): Minimum delta similarity between query and
                        any given possibility for possibility to be considered.
                        Delta used by difflib.get_close_matches().
 

@@ -29,7 +29,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Beta'
-__version__ = '2.0.0b4'
+__version__ = '2.0.0b5'
 
 
 class COpen(Action):
@@ -66,6 +66,8 @@ class COpen(Action):
             ...                   action=COpen,
             ...                   mode='rb')
             >>> args = parser.parse_args([temp.name])
+            >>> args.test_bzip.read()
+            b'bzip2'
     """
 
     def __init__(self, option_strings, dest, mode='rb', nargs=None, **kwargs):
