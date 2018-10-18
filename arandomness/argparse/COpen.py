@@ -28,27 +28,22 @@ __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
-__status__ = 'Beta'
-__version__ = '2.0.0b5'
+__status__ = 'Production/Stable'
+__version__ = '2.0.0'
 
 
 class COpen(Action):
     """Argparse Action that detects and opens compressed files for rw
 
     Attributes:
-        option_strings (list): list of str giving command line flags that
-                               call this action
+        kwargs (various): list of keyword arguments passed to compression algo
 
-        dest (str): Namespace reference to value
-
-        mode (str): mode to pass to (de)compression algorithm
-
-        nargs (bool): True if multiple arguments specified, must be None
-
-        **kwargs (various): optional arguments to pass to argparse and algo
+        mode (unicode): mode to open file with
 
     Examples:
         .. code-block:: Python
+
+            >>> from arandomness.argparse import COpen
             >>> import argparse
             >>> from tempfile import NamedTemporaryFile
             >>> # Write bzip file using COpen
@@ -72,6 +67,19 @@ class COpen(Action):
 
     def __init__(self, option_strings, dest, mode='rb', nargs=None, **kwargs):
         """Initialize class and spawn self as Base Class w/o nargs
+
+        Args:
+
+            option_strings (list): list of str giving command line flags that
+                                   call this action
+
+            dest (unicode): Namespace reference to value
+
+            mode (unicode): mode to pass to (de)compression algorithm
+
+            nargs (bool): True if multiple arguments specified, must be None
+
+            **kwargs (various): optional arguments to pass to argparse and algo
 
         Raises:
             ValueError: if nargs is not None, COpen does not accept nargs

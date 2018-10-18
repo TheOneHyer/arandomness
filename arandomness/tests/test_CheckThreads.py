@@ -29,7 +29,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 
 def test_CheckThreads():
@@ -46,7 +46,7 @@ def test_CheckThreads():
     args = parser.parse_args([str(threads)])
     assert args.test == threads
 
-    # Test >1 thread
+    # Test >0 thread
     try:
         parser.parse_args([0])
     except ValueError as error:

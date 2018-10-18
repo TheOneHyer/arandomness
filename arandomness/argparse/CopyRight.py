@@ -27,25 +27,24 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.0.1'
+__version__ = '1.0.3'
 
 
 class CopyRight(argparse.Action):
-    """Argparse Action that prints a program copyright
+    """Argparse Action that prints a program copyright and exits program
 
-    Attributes:
-        option_strings (list): list of str giving command line flags that
-                               call this action
-
-        dest (str): Namespace reference to value
-
-        nargs (bool): True if multiple arguments specified
-
-        **kwargs (various): optional arguments to pass to super call
-
-    It does not escape my notice that this action prints arbitrary text
+    Note: It does not escape my notice that this action prints arbitrary text
     without any sort of "copyright-specific" attributes or mangling. This
     function is only called this for readability in code.
+
+    Example:
+        .. code-block:: Python
+
+            >>> parser = argparse.ArgumentParser()
+            >>> parser.add_argument('test',
+            ...                     action=CopyRight,
+            ...                     copyright_text='test')
+            'test'
     """
 
     def __init__(self, option_strings, dest, copyright_text=None, nargs=None,

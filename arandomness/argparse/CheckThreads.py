@@ -28,11 +28,24 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.0.3'
+__version__ = '1.0.4'
 
 
 class CheckThreads(argparse.Action):
-    """Argparse Action that ensures number of threads requested is valid"""
+    """Argparse Action that ensures number of threads requested is valid
+
+    Example:
+        .. code-block:: Python
+
+        >>> from arandomness.argparse import CheckThreads
+        >>> parser = argparse.ArgumentParser()
+        >>> parser.add_argument('test',
+        ...                     type=int,
+        ...                     action=CheckThreads)
+        >>> args = parser.parse_args([1])
+        >>> args.test
+        1
+    """
 
     def __init__(self, option_strings, dest, nargs=None, **kwargs):
         """Initialize class and spawn self as Base Class w/o nargs

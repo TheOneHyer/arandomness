@@ -33,7 +33,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '2.0.0'
+__version__ = '2.0.1'
 
 
 # Credits: https://stackoverflow.com/questions/13044562/
@@ -42,16 +42,15 @@ def copen(fileobj, mode='rb', **kwargs):
     """Detects and opens compressed file for reading and writing.
 
     Args:
+        fileobj (File): any File-like object supported by an underlying
+                        compression algorithm
 
-        fileobj: any File-like object supported by an underlying compression
-                 algorithm
-
-        mode: mode to open fileobj with
+        mode (unicode): mode to open fileobj with
 
         **kwargs: keyword-arguments to pass to the compression algorithm
 
     Returns:
-        file: TextWrapper if no compression, else returns appropriate
+        File: TextWrapper if no compression, else returns appropriate
               wrapper for the compression type
 
     Example:

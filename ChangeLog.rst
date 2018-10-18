@@ -4,6 +4,7 @@ Changelog
 
 (unreleased)
 ------------
+- Added Documentation and Examples to copen. [TheOneHyer]
 - Renamed files Open to copen. [TheOneHyer]
 
   The Open class of the files subpackage has not been renamed to copen

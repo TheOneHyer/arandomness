@@ -27,7 +27,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '1.1.0'
+__version__ = '1.1.1'
 
 
 class ParseSeparator(argparse.Action):
@@ -35,16 +35,22 @@ class ParseSeparator(argparse.Action):
        character
 
     Attributes:
-        option_strings (list): list of str giving command line flags that
-                               call this action
+            kwargs (various): optional arguments to pass to super call
 
-        dest (str): Namespace reference to value
+            sep (unicode): any character that separates arguments
 
-        sep (str): arbitrary separator character
+    Example:
+        .. code-block:: Python
 
-        nargs (str): number of args as special char or int
+                >>> parser = argparse.ArgumentParser()
+                >>> parser.add_argument('test',
+                ...                     action=ParseSeparator)
+                >>> args = parser.parse_args(['this,is,a,test'])
+                >>> args.test
+                ['this', 'is', 'a', 'test']
 
-        **kwargs (various): optional arguments to pass to super call
+    # Test comma parsing
+    args = parser.parse_args(['this,is,a,test'])
     """
 
     def __init__(self, option_strings, dest, sep=',', nargs=None, **kwargs):
