@@ -29,7 +29,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Beta'
-__version__ = '2.0.0b2'
+__version__ = '2.0.0b3'
 
 
 class COpen(Action):
@@ -46,6 +46,26 @@ class COpen(Action):
         nargs (bool): True if multiple arguments specified, must be None
 
         **kwargs (various): optional arguments to pass to argparse and algo
+
+    Examples:
+        .. code-block:: Python
+            >>> import argparse
+            >>> from tempfile import NamedTemporaryFile
+            >>> # Write bzip file using COpen
+            >>> temp = NamedTemporaryFile(delete=False, suffix='.bz2')
+            >>> parser = argparse.ArgumentParser()
+            >>> parser.add_argument('test_bzip',
+            ...                   action=COpen,
+            ...                   mode='wb')
+            >>> args = parser.parse_args([temp.name])
+            >>> args.test_bzip.write(b'bzip2')
+            >>> args.test_bzip.close()
+            >>> # Read bzip file using COpen
+            >>> parser = argparse.ArgumentParser()
+            >>> parser.add_argument('test_bzip',
+            ...                   action=COpen,
+            ...                   mode='rb')
+            >>> args = parser.parse_args([temp.name])
     """
 
     def __init__(self, option_strings, dest, mode='rb', nargs=None, **kwargs):
