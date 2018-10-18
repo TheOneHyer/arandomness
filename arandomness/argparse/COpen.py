@@ -20,7 +20,7 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from ..files.Open import Open as op
+from ..files import copen
 from argparse import Action
 
 
@@ -29,7 +29,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Beta'
-__version__ = '2.0.0b3'
+__version__ = '2.0.0b4'
 
 
 class COpen(Action):
@@ -103,4 +103,6 @@ class COpen(Action):
                                 compression algorithm
         """
 
-        setattr(namespace, self.dest, op(value, mode=self.mode, **self.kwargs))
+        handle = copen(value, mode=self.mode, **self.kwargs)
+
+        setattr(namespace, self.dest, handle)

@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-"""<description>
+"""Initializes files package of arandomness
 
 Copyright:
-    <script name>  <description>
+    __init.py__  initializes files package of arandomness
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -20,11 +20,11 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from arandomness.files.Open import Open
+from .copen import copen
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
-__status__ = 'Planning'
-__version__ = '0.1.0b1'
+__status__ = 'Alpha'
+__version__ = '0.1.0b2'

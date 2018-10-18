@@ -38,7 +38,7 @@ __version__ = '2.0.0b1'
 
 # Credits: https://stackoverflow.com/questions/13044562/
 # python-mechanism-to-identify-compressed-file-type-and-uncompress
-def Open(fileobj, mode='rb', **kwargs):
+def copen(fileobj, mode='rb', **kwargs):
     """"""
 
     algo = io.open  # Only used as io.open in write mode

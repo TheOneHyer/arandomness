@@ -36,7 +36,7 @@ __version__ = '1.1.0'
 
 
 def test_COpen():
-    """Test arandomness' Open ability to read and write files"""
+    """Test arandomness' COpen ability to read and write files"""
 
     # Test BZIP2 write
     temp = NamedTemporaryFile(delete=False, suffix='.bz2')
