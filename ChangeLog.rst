@@ -4,6 +4,9 @@ Changelog
 
 (unreleased)
 ------------
+- Added Examples to all of Argparse. [TheOneHyer]
+
+  The entire argparse subpackage now has proper examples.
 - Added Documentation and Examples to copen. [TheOneHyer]
 - Renamed files Open to copen. [TheOneHyer]
 
