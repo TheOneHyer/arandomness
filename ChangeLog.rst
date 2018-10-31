@@ -4,6 +4,10 @@ Changelog
 
 (unreleased)
 ------------
+- Created arandom Subpackage. [TheOneHyer]
+- Updated COpen Documentation. [TheOneHyer]
+
+  Need to add files and copen, then move COpen to copen.
 - Added Examples to all of Argparse. [TheOneHyer]
 
   The entire argparse subpackage now has proper examples.

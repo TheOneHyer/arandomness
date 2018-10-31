@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-"""Initializes arandom package of arandomness
+"""Generate an arandom number sequence
 
 Copyright:
-    __init.py__  initializes arandom package of arandomness
+    generator.py  generates an arandom number sequence
     Copyright (C) 2018  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -26,3 +26,9 @@ __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Planning'
 __version__ = '0.1.0a1'
+
+
+def generator():
+    """Arandom number generator"""
+
+    pass
