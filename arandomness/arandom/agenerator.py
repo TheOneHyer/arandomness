@@ -20,8 +20,9 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import numpy
+from . import MemEater
 import psutil
+from time import sleep
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
@@ -34,6 +35,10 @@ __version__ = '0.1.0a1'
 def agenerator():
     """Arandom number generator"""
 
-    free_mem = psutil.virtual_memory().free
-    mem_12 = 0.12 * free_mem
-    mem_13 = 0.13 * free_mem
+    free_mem = psutil.virtual_memory().available
+    mem_24 = 0.24 * free_mem
+    mem_26 = 0.26 * free_mem
+    a = MemEater(int(mem_24 / 8))
+    b = MemEater(int(mem_26 / 8))
+    sleep(5)
+    return (free_mem/1000/1000, psutil.virtual_memory().available/1000/1000)

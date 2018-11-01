@@ -21,14 +21,23 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from setuptools import setup
+from Cython.Build import cythonize
+from setuptools import setup, find_packages
+from setuptools.extension import Extension
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '0.2.0b1'
+__version__ = '0.2.0b2'
+
+extensions = [
+    Extension(
+        "arandomness.arandom.mem_eater",
+        ["arandomness/arandom/mem_eater.pyx"]
+    ),
+]
 
 setup(name='arandomness',
       version=__version__,
@@ -49,13 +58,11 @@ setup(name='arandomness',
       author='Alex Hyer',
       author_email='theonehyer@gmail.com',
       license='GPLv3',
-      packages=[
-          'arandomness',
-          'arandomness.argparse',
-          'arandomness.str',
-          'arandomness.trees'
-      ],
+      packages=find_packages(),
+      ext_modules=cythonize(extensions,
+                            compiler_directives={'language_level': 3}),
       requires=[
+          'Cython',
           'prettytable'
       ],
       include_package_data=True,

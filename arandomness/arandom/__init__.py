@@ -20,6 +20,7 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+from .mem_eater import MemEater
 from .agenerator import agenerator
 
 __author__ = 'Alex Hyer'
@@ -27,4 +28,4 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Planning'
-__version__ = '0.1.0a2'
+__version__ = '0.1.0a4'

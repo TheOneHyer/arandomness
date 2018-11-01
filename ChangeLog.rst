@@ -4,6 +4,7 @@ Changelog
 
 (unreleased)
 ------------
+- Stripped agenerator to a Few Key Lines. [TheOneHyer]
 - Added generator Function Skeleton to arandom. [TheOneHyer]
 - Created arandom Subpackage. [TheOneHyer]
 - Updated COpen Documentation. [TheOneHyer]
