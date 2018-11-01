@@ -20,6 +20,9 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import numpy
+import psutil
+
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
@@ -28,7 +31,9 @@ __status__ = 'Planning'
 __version__ = '0.1.0a1'
 
 
-def generator():
+def agenerator():
     """Arandom number generator"""
 
-    pass
+    free_mem = psutil.virtual_memory().free
+    mem_12 = 0.12 * free_mem
+    mem_13 = 0.13 * free_mem
