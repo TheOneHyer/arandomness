@@ -4,6 +4,7 @@ Changelog
 
 (unreleased)
 ------------
+- Added Base of MemEater. [TheOneHyer]
 - Stripped agenerator to a Few Key Lines. [TheOneHyer]
 - Added generator Function Skeleton to arandom. [TheOneHyer]
 - Created arandom Subpackage. [TheOneHyer]

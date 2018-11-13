@@ -1,1 +1,1 @@
-recursive-include Documentation *.c *.md *.pyx *.rst
+recursive-include Documentation *.c *.md *.pyx *.rst *.so

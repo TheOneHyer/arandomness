@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-"""<description>
+"""Initializes memeater package of arandomness
 
 Copyright:
-    <script name>  <description>
+    __init__.py  Initializes memeater package of arandomness
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -20,31 +20,11 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from cpython.mem cimport PyMem_Malloc, PyMem_Free
-import random
+from .MemEater import MemEater
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
-__status__ = 'Planning'
-__version__ = '0.1.0a2'
-
-
-# Credits: https://cython.readthedocs.io/en/latest/src/tutorial
-# /memory_allocation.html
-cdef class MemEater:
-
-    cdef double* data
-
-    def __cinit__(self, size_t number):
-        # allocate some memory (uninitialised, may contain arbitrary data)
-        self.data = <double*> PyMem_Malloc(number * sizeof(double))
-        if not self.data:
-            raise MemoryError()
-
-        for i in range(number):
-            self.data[i] = 1
-
-    def __dealloc__(self):
-        PyMem_Free(self.data)  # no-op if self.data is NULL
+__status__ = 'Production'
+__version__ = '1.0.0'

@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-"""<description>
+"""Test arandomness' agenerator
 
 Copyright:
-    <script name>  <description>
+    test_agenerator.py  Test arandomness'
     Copyright (C) 2017  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,10 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Planning'
-__version__ = '0.1.0a1'
+__version__ = '0.1.0a2'
+
 
 def test_agenerator():
-    assert agenerator() == 10
+    """Test arandomness' agenerator"""
+
+    pass
