@@ -4,6 +4,10 @@ Changelog
 
 (unreleased)
 ------------
+- Added Coverage Badge. [TheOneHyer]
+- Testing GitHub Release Feature. [TheOneHyer]
+
+  This commit doesn't change any real code.
 - Added Deprecation Warning to OmniTree. [TheOneHyer]
 - Converted Tests to Absolute Imports and Fixed Test. [TheOneHyer]
 

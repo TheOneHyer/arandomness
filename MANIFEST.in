@@ -1,1 +1,2 @@
-recursive-include Documentation *.c *.md *.pyx *.rst *.so
+include ChangeLog.rst
+include README.md
