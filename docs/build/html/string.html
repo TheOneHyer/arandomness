@@ -4,24 +4,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>string &#8212; arandomness 0.1.0 documentation</title>
+    <title>string &#8212; arandomness 0.2.0b7 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="trees" href="trees.html" />
@@ -32,8 +23,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body>
+  </head><body>
   <div class="document">
     
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -79,48 +69,43 @@
 </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
         </div>
       </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
+          
+
           <div class="body" role="main">
             
-  <div class="section" id="module-arandomness.string">
-<span id="string"></span><h1>string<a class="headerlink" href="#module-arandomness.string" title="Permalink to this headline">¶</a></h1>
-<p>Initializes string package of arandomness</p>
-<dl class="docutils">
-<dt>Copyright:</dt>
-<dd><p class="first">__init__.py  initializes string package of arandomness
-Copyright (C) 2017  Alex Hyer</p>
-<p>This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.</p>
-<p>This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.</p>
-<p class="last">You should have received a copy of the GNU General Public License
-along with this program.  If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
-</dd>
-</dl>
+  <div class="section" id="string">
+<h1>string<a class="headerlink" href="#string" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">string</span></code> subpackage of arandomness contains a couple functions that
+<p>The <code class="docutils literal notranslate"><span class="pre">string</span></code> subpackage of arandomness contains a couple functions that
 analyze or manipulate strings in some way. That’s about as specific as this
 subpackage gets. Enjoy!</p>
 </div>
 <div class="section" id="autocorrect">
 <h2>autocorrect<a class="headerlink" href="#autocorrect" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">autocorrect</span></code> function takes a single query string and a list of
+<p>The <code class="docutils literal notranslate"><span class="pre">autocorrect</span></code> function takes a single query string and a list of
 “correct” strings and identifies which string in the list the query most
 closely matches. There are many far more robust autocorrect algorithms
 written in Python than this one, but they all require a list of words
@@ -128,7 +113,7 @@ organized by their frequency in a given language. Basically, these
 autocorrect algorithms are aimed at correcting words specific to a language and
 are thus better suited for use in language processing software, e.g. texting
 apps. This algorithm uses any list of strings and is order-agnostic. Thus,
-my <code class="docutils literal"><span class="pre">autocorrect</span></code> is better suited for attempting to match queries to small
+my <code class="docutils literal notranslate"><span class="pre">autocorrect</span></code> is better suited for attempting to match queries to small
 lists of arbitrary strings.</p>
 <p>To help realize this concept, I have used
 this function in a program that presented data in a database about programs
@@ -138,97 +123,23 @@ if a user misspelled a program name, the program likely produced the proper
 entry.</p>
 <div class="section" id="api-documentation">
 <h3>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="arandomness.string.autocorrect">
-<code class="descclassname">arandomness.string.</code><code class="descname">autocorrect</code><span class="sig-paren">(</span><em>query</em>, <em>possibilities</em>, <em>delta=0.75</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/string/autocorrect.html#autocorrect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.string.autocorrect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attempts to figure out what possibility the query is</p>
-<p>This autocorrect function is rather simple right now with plans for later
-improvement. Right now, it just attempts to finish spelling a word as much
-as possible, and then determines which possibility is closest to said word.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>query</strong> (<em>unicode</em>) – query to attempt to complete</li>
-<li><strong>possibilities</strong> (<em>list</em>) – list of unicodes of possible answers for query</li>
-<li><strong>delta</strong> (<em>float</em>) – minimum delta similarity between query and
-any given possibility for possibility to be considered.
-Delta used by difflib.get_close_matches().</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">best guess of correct answer</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">unicode</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><code class="xref py py-exc docutils literal"><span class="pre">AssertionError</span></code> – raised if no matches found</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Example</p>
-<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">autocorrect</span><span class="p">(</span><span class="s1">&#39;bowtei&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;bowtie2&#39;</span><span class="p">,</span> <span class="s1">&#39;bot&#39;</span><span class="p">])</span>
-<span class="s1">&#39;bowtie2&#39;</span>
-</pre></div>
-</div>
-</dd></dl>
-
 </div>
 </div>
 <div class="section" id="max-substring">
 <h2>max_substring<a class="headerlink" href="#max-substring" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal"><span class="pre">max_substring</span></code> function takes in a list of strings and finds the
-longest substring that they all share. By default, <code class="docutils literal"><span class="pre">max_substring</span></code> starts
+<p>The <code class="docutils literal notranslate"><span class="pre">max_substring</span></code> function takes in a list of strings and finds the
+longest substring that they all share. By default, <code class="docutils literal notranslate"><span class="pre">max_substring</span></code> starts
 at the beginning of each string, but it can be optionally start at a
 later position as demonstrated in the docstring examples.</p>
 <div class="section" id="id1">
 <h3>API Documentation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<dl class="function">
-<dt id="arandomness.string.max_substring">
-<code class="descclassname">arandomness.string.</code><code class="descname">max_substring</code><span class="sig-paren">(</span><em>words</em>, <em>position=0</em>, <em>_last_letter=''</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/arandomness/string/max_substring.html#max_substring"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#arandomness.string.max_substring" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finds max substring shared by all strings starting at position</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>words</strong> (<em>list</em>) – list of unicode of all words to compare</li>
-<li><strong>position</strong> (<em>int</em>) – starting position in each word to begin analyzing
-for substring</li>
-<li><strong>_last_letter</strong> (<em>unicode</em>) – last common letter, only for use
-internally unless you really know what
-you are doing</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">max string common to all words</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">unicode</p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class="rubric">Examples</p>
-<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">max_substring</span><span class="p">([</span><span class="s1">&#39;aaaa&#39;</span><span class="p">,</span> <span class="s1">&#39;aaab&#39;</span><span class="p">,</span> <span class="s1">&#39;aaac&#39;</span><span class="p">])</span>
-<span class="s1">&#39;aaa&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">max_substring</span><span class="p">([</span><span class="s1">&#39;abbb&#39;</span><span class="p">,</span> <span class="s1">&#39;bbbb&#39;</span><span class="p">,</span> <span class="s1">&#39;cbbb&#39;</span><span class="p">],</span> <span class="n">position</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="s1">&#39;bbb&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">max_substring</span><span class="p">([</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;bcd&#39;</span><span class="p">,</span> <span class="s1">&#39;cde&#39;</span><span class="p">])</span>
-<span class="s1">&#39;&#39;</span>
-</pre></div>
-</div>
-</dd></dl>
-
 </div>
 </div>
 </div>
 
 
           </div>
+          
         </div>
       </div>
     <div class="clearer"></div>
@@ -237,8 +148,8 @@ you are doing</li>
       &copy;2017, Alex Hyer.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
       <a href="_sources/string.rst.txt"

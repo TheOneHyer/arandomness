@@ -1,0 +1,235 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>arandomness.argparse.COpen &#8212; arandomness 0.2.0b7 documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../../index.html">arandomness</a></h1>
+
+
+
+<p class="blurb">An arandom assortment of random modules</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=TheOneHyer&repo=arandomness&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../argparse.html">argparse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../string.html">string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../trees.html">trees</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for arandomness.argparse.COpen</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! /usr/bin/env python</span>
+
+<span class="sd">&quot;&quot;&quot;Detects and opens compressed files for reading or writing</span>
+
+<span class="sd">Copyright:</span>
+<span class="sd">    COpen.py  detects and opens compressed files for reading and writing</span>
+<span class="sd">    Copyright (C) 2017  Alex Hyer</span>
+
+<span class="sd">    This program is free software: you can redistribute it and/or modify</span>
+<span class="sd">    it under the terms of the GNU General Public License as published by</span>
+<span class="sd">    the Free Software Foundation, either version 3 of the License, or</span>
+<span class="sd">    (at your option) any later version.</span>
+
+<span class="sd">    This program is distributed in the hope that it will be useful,</span>
+<span class="sd">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="sd">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="sd">    GNU General Public License for more details.</span>
+
+<span class="sd">    You should have received a copy of the GNU General Public License</span>
+<span class="sd">    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">arandomness.files</span> <span class="k">import</span> <span class="n">copen</span>
+<span class="kn">from</span> <span class="nn">argparse</span> <span class="k">import</span> <span class="n">Action</span>
+
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Alex Hyer&#39;</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="s1">&#39;theonehyer@gmail.com&#39;</span>
+<span class="n">__license__</span> <span class="o">=</span> <span class="s1">&#39;GPLv3&#39;</span>
+<span class="n">__maintainer__</span> <span class="o">=</span> <span class="s1">&#39;Alex Hyer&#39;</span>
+<span class="n">__status__</span> <span class="o">=</span> <span class="s1">&#39;Production/Stable&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;2.0.1&#39;</span>
+
+
+<div class="viewcode-block" id="COpen"><a class="viewcode-back" href="../../../argparse.html#arandomness.argparse.COpen">[docs]</a><span class="k">class</span> <span class="nc">COpen</span><span class="p">(</span><span class="n">Action</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Argparse Action that detects and opens compressed files for rw</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        kwargs (various): list of keyword arguments passed to compression algo</span>
+
+<span class="sd">        mode (unicode): mode to open file with</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        .. code-block:: Python</span>
+
+<span class="sd">            &gt;&gt;&gt; from arandomness.argparse import COpen</span>
+<span class="sd">            &gt;&gt;&gt; import argparse</span>
+<span class="sd">            &gt;&gt;&gt; from tempfile import NamedTemporaryFile</span>
+<span class="sd">            &gt;&gt;&gt; # Write bzip file using COpen</span>
+<span class="sd">            &gt;&gt;&gt; temp = NamedTemporaryFile(delete=False, suffix=&#39;.bz2&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; parser = argparse.ArgumentParser()</span>
+<span class="sd">            &gt;&gt;&gt; parser.add_argument(&#39;test_bzip&#39;,</span>
+<span class="sd">            ...                   action=COpen,</span>
+<span class="sd">            ...                   mode=&#39;wb&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; args = parser.parse_args([temp.name])</span>
+<span class="sd">            &gt;&gt;&gt; args.test_bzip.write(b&#39;bzip2&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; args.test_bzip.close()</span>
+<span class="sd">            &gt;&gt;&gt; # Read bzip file using COpen</span>
+<span class="sd">            &gt;&gt;&gt; parser = argparse.ArgumentParser()</span>
+<span class="sd">            &gt;&gt;&gt; parser.add_argument(&#39;test_bzip&#39;,</span>
+<span class="sd">            ...                   action=COpen,</span>
+<span class="sd">            ...                   mode=&#39;rb&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; args = parser.parse_args([temp.name])</span>
+<span class="sd">            &gt;&gt;&gt; args.test_bzip.read()</span>
+<span class="sd">            b&#39;bzip2&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option_strings</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize class and spawn self as Base Class w/o nargs</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            option_strings (list): list of str giving command line flags that</span>
+<span class="sd">                                   call this action</span>
+
+<span class="sd">            dest (unicode): Namespace reference to value</span>
+
+<span class="sd">            mode (unicode): mode to pass to (de)compression algorithm</span>
+
+<span class="sd">            nargs (bool): True if multiple arguments specified, must be None</span>
+
+<span class="sd">            **kwargs (various): optional arguments to pass to argparse and algo</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: if nargs is not None, COpen does not accept nargs</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Only accept a single value to analyze</span>
+        <span class="k">if</span> <span class="n">nargs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;nargs not allowed for COpen&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Call self again but without nargs, considering the above, I don&#39;t</span>
+        <span class="c1"># know why this is needed, but it is</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">COpen</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">option_strings</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Store and establish variables used in __call__</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>  <span class="c1"># Pass along unused args</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<div class="viewcode-block" id="COpen.__call__"><a class="viewcode-back" href="../../../argparse.html#arandomness.argparse.COpen.__call__">[docs]</a>    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">namespace</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">option_string</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Detects and opens compressed files</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            parser (ArgumentParser): parser used to generate values</span>
+
+<span class="sd">            namespace (Namespace): namespace to set values for</span>
+
+<span class="sd">            value (str): actual value specified by user</span>
+
+<span class="sd">            option_string (str): argument flag used to call this function</span>
+
+<span class="sd">            **kwargs (various): optional arguments later passed to the</span>
+<span class="sd">                                compression algorithm</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">handle</span> <span class="o">=</span> <span class="n">copen</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dest</span><span class="p">,</span> <span class="n">handle</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, Alex Hyer.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/TheOneHyer/arandomness" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

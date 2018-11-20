@@ -4,6 +4,7 @@ Changelog
 
 (unreleased)
 ------------
+- Added Deprecation Warning to OmniTree. [TheOneHyer]
 - Converted Tests to Absolute Imports and Fixed Test. [TheOneHyer]
 
   All tests use absolute imports. MemEater seems to allocate a
