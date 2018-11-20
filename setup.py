@@ -30,7 +30,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Beta'
-__version__ = '0.2.0b4'
+__version__ = '0.2.0b5'
 
 extensions = [
     Extension(
@@ -63,7 +63,7 @@ setup(name='arandomness',
                             compiler_directives={'language_level': 3}),
       requires=[
           'Cython',
-          'prettytable'
+          'psutil'
       ],
       include_package_data=True,
       zip_safe=False

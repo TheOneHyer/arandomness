@@ -1,10 +1,10 @@
 #! /usr/bin/env python
 
-"""Test arandomness' agenerator
+"""Generate an arandom number sequence
 
 Copyright:
-    test_agenerator.py  Test arandomness'
-    Copyright (C) 2017  Alex Hyer
+    generator.py  generates an arandom number sequence
+    Copyright (C) 2018  Alex Hyer
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,17 +20,25 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from arandomness.arandom import agenerator
+from arandomness.memeater import MemEater
+import psutil
+from time import sleep
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Planning'
-__version__ = '0.1.0a3'
+__version__ = '0.1.0a2'
 
 
-def test_agenerator():
-    """Test arandomness' agenerator"""
+def agenerator():
+    """Arandom number generator"""
 
-    pass
+    free_mem = psutil.virtual_memory().available
+    mem_24 = 0.24 * free_mem
+    mem_26 = 0.26 * free_mem
+    a = MemEater(int(mem_24))
+    b = MemEater(int(mem_26))
+    sleep(5)
+    return free_mem/1000/1000, psutil.virtual_memory().available/1000/1000

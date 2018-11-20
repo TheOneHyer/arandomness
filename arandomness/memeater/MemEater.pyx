@@ -27,11 +27,11 @@ __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
-__status__ = 'Production'
-__version__ = '1.0.0'
+__status__ = 'Production/Stable'
+__version__ = '1.0.2'
 
 
-# Credits: https://cython.readthedocs.io/en/latest/src/tutorial
+# Credits: https://cython.readthedo0cs.io/en/latest/src/tutorial
 # /memory_allocation.html
 cdef class MemEater:
     """Cython Class that consumes arbitrary amounts of RAM and can enumerate
@@ -85,8 +85,8 @@ cdef class MemEater:
         cdef int total = 0
 
         # Calculate RAM usage in bytes by summing self-aware ones
-        for i in self.data:
-            total += i
+        for i in range(self.number):
+            total += self.data[i]
 
         return total
 
