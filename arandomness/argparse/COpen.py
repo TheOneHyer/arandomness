@@ -20,7 +20,7 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from ..files import copen
+from files import copen
 from argparse import Action
 
 
@@ -29,7 +29,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '2.0.0'
+__version__ = '2.0.1'
 
 
 class COpen(Action):

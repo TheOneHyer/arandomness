@@ -33,7 +33,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Production/Stable'
-__version__ = '2.0.1'
+__version__ = '2.0.2'
 
 
 # Credits: https://stackoverflow.com/questions/13044562/
@@ -119,7 +119,7 @@ def copen(fileobj, mode='rb', **kwargs):
             b'\x42\x5a\x68': modules['BZ2File'],
             b'\x1f\x8b\x08': modules['GzipFile'],
             b'\xfd7zXZ\x00': modules['LZMAFile']
-            }
+        }
 
         # Open the file, buffer it, and identify the compression algorithm
         fileobj = io.BufferedReader(io.open(fileobj, 'rb'))

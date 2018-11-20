@@ -38,7 +38,7 @@ def agenerator():
     free_mem = psutil.virtual_memory().available
     mem_24 = 0.24 * free_mem
     mem_26 = 0.26 * free_mem
-    a = MemEater(int(mem_24) / 8)
-    b = MemEater(int(mem_26) / 8)
+    a = MemEater(int(mem_24))
+    b = MemEater(int(mem_26))
     sleep(5)
-    return (free_mem/1000/1000, psutil.virtual_memory().available/1000/1000)
+    return free_mem/1000/1000, psutil.virtual_memory().available/1000/1000

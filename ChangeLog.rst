@@ -4,6 +4,10 @@ Changelog
 
 (unreleased)
 ------------
+- Completed MemEater. [TheOneHyer]
+
+  C-extension to consume arbitrary amounts of RAM is now complete.
+  This includes unit tests and a Cython class.
 - Added Base of MemEater. [TheOneHyer]
 - Stripped agenerator to a Few Key Lines. [TheOneHyer]
 - Added generator Function Skeleton to arandom. [TheOneHyer]
