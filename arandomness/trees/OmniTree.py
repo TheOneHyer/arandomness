@@ -2,6 +2,13 @@
 
 """A many-to-many tree with self-aware features
 
+DEPRECATED: This class is not useful as OmniTree's logical conclusion
+            is a graph and there are plenty of network graph libraries that
+            are far better than I could ever code. I keep this subpackage
+            around because I was proud of what I did given my coding knowledge
+            at the time and want to memorialize it. I strongly recommend you
+            never use this.
+
 Copyright:
     omnitree.py  A many-to-many tree with self-aware features
     Copyright (C) 2017  Alex Hyer
@@ -25,7 +32,7 @@ __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
 __status__ = 'Inactive'
-__version__ = '0.1.0a7'
+__version__ = '0.1.0a8'
 
 
 class OmniTree(object):

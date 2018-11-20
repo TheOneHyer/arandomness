@@ -4,6 +4,13 @@ Changelog
 
 (unreleased)
 ------------
+- Converted Tests to Absolute Imports and Fixed Test. [TheOneHyer]
+
+  All tests use absolute imports. MemEater seems to allocate a
+  semi-random byte when PyMem_Malloc is called and I can't figure
+  out how to remove it. So I adjusted the function to just ignore
+  the overhead and all tests now past.
+- Changed Relative Imports to Absolute Imports. [TheOneHyer]
 - Completed MemEater. [TheOneHyer]
 
   C-extension to consume arbitrary amounts of RAM is now complete.

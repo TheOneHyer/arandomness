@@ -2,6 +2,13 @@
 
 """Initializes trees package of arandomness
 
+DEPRECATED: This subpackage is not useful as OmniTree's logical conclusion
+            is a graph and there are plenty of network graph libraries that
+            are far better than I could ever code. I keep this subpackage
+            around because I was proud of what I did given my coding knowledge
+            at the time and want to memorialize it. I strongly recommend you
+            never use this.
+
 Copyright:
     __init__.py  Initializes trees package of arandomness
     Copyright (C) 2017  Alex Hyer
@@ -20,11 +27,11 @@ Copyright:
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from arandomness.trees.omnitree import OmniTree
+from arandomness.trees.OmniTree import OmniTree
 
 __author__ = 'Alex Hyer'
 __email__ = 'theonehyer@gmail.com'
 __license__ = 'GPLv3'
 __maintainer__ = 'Alex Hyer'
-__status__ = 'Alpha'
-__version__ = '0.1.0a7'
+__status__ = 'Inactive'
+__version__ = '0.1.0a8'

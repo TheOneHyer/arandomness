@@ -1295,7 +1295,7 @@ static PyObject *__pyx_builtin_TypeError;
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_test[] = "__test__";
-static const char __pyx_k_1_0_1[] = "1.0.1";
+static const char __pyx_k_1_0_2[] = "1.0.2";
 static const char __pyx_k_GPLv3[] = "GPLv3";
 static const char __pyx_k_email[] = "__email__";
 static const char __pyx_k_range[] = "range";
@@ -1320,7 +1320,7 @@ static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_theonehyer_gmail_com[] = "theonehyer@gmail.com";
 static const char __pyx_k_Consume_an_arbitrary_amount_of_6[] = "Consume an arbitrary amount of 64 bit blocks of virtual memory\n\nCopyright:\n    mem_eater.pyx  Consume an arbitrary amount of virtual memory\n    Copyright (C) 2017  Alex Hyer\n\n    This program is free software: you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation, either version 3 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU General Public License for more details.\n\n    You should have received a copy of the GNU General Public License\n    along with this program.  If not, see <http://www.gnu.org/licenses/>.\n";
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
-static PyObject *__pyx_kp_u_1_0_1;
+static PyObject *__pyx_kp_u_1_0_2;
 static PyObject *__pyx_kp_u_Alex_Hyer;
 static PyObject *__pyx_n_u_GPLv3;
 static PyObject *__pyx_n_s_MemEater;
@@ -1666,20 +1666,20 @@ static PyObject *__pyx_pf_11arandomness_8memeater_8MemEater_8MemEater_4size(stru
  *         for i in range(self.number):
  *             total += self.data[i]             # <<<<<<<<<<<<<<
  * 
- *         #total = self.data.count(b'\x01')
+ *         return total
  */
     __pyx_v_total = (__pyx_v_total + (__pyx_v_self->data[__pyx_v_i]));
   }
 
-  /* "arandomness/memeater/MemEater.pyx":93
- *         #total = self.data.count(b'\x01')
+  /* "arandomness/memeater/MemEater.pyx":91
+ *             total += self.data[i]
  * 
  *         return total             # <<<<<<<<<<<<<<
  * 
  *     def __dealloc__(self):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_total); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_total); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
@@ -1704,7 +1704,7 @@ static PyObject *__pyx_pf_11arandomness_8memeater_8MemEater_8MemEater_4size(stru
   return __pyx_r;
 }
 
-/* "arandomness/memeater/MemEater.pyx":95
+/* "arandomness/memeater/MemEater.pyx":93
  *         return total
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -1727,14 +1727,14 @@ static void __pyx_pf_11arandomness_8memeater_8MemEater_8MemEater_6__dealloc__(st
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
-  /* "arandomness/memeater/MemEater.pyx":98
+  /* "arandomness/memeater/MemEater.pyx":96
  *         """Release memory on object destruction"""
  * 
  *         PyMem_Free(self.data)  # no-op if self.data is NULL             # <<<<<<<<<<<<<<
  */
   PyMem_Free(__pyx_v_self->data);
 
-  /* "arandomness/memeater/MemEater.pyx":95
+  /* "arandomness/memeater/MemEater.pyx":93
  *         return total
  * 
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
@@ -2818,7 +2818,7 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_kp_u_1_0_1, __pyx_k_1_0_1, sizeof(__pyx_k_1_0_1), 0, 1, 0, 0},
+  {&__pyx_kp_u_1_0_2, __pyx_k_1_0_2, sizeof(__pyx_k_1_0_2), 0, 1, 0, 0},
   {&__pyx_kp_u_Alex_Hyer, __pyx_k_Alex_Hyer, sizeof(__pyx_k_Alex_Hyer), 0, 1, 0, 0},
   {&__pyx_n_u_GPLv3, __pyx_k_GPLv3, sizeof(__pyx_k_GPLv3), 0, 1, 0, 1},
   {&__pyx_n_s_MemEater, __pyx_k_MemEater, sizeof(__pyx_k_MemEater), 0, 0, 1, 1},
@@ -3236,7 +3236,7 @@ if (!__Pyx_RefNanny) {
  * __license__ = 'GPLv3'
  * __maintainer__ = 'Alex Hyer'             # <<<<<<<<<<<<<<
  * __status__ = 'Production/Stable'
- * __version__ = '1.0.1'
+ * __version__ = '1.0.2'
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_maintainer, __pyx_kp_u_Alex_Hyer) < 0) __PYX_ERR(0, 29, __pyx_L1_error)
 
@@ -3244,7 +3244,7 @@ if (!__Pyx_RefNanny) {
  * __license__ = 'GPLv3'
  * __maintainer__ = 'Alex Hyer'
  * __status__ = 'Production/Stable'             # <<<<<<<<<<<<<<
- * __version__ = '1.0.1'
+ * __version__ = '1.0.2'
  * 
  */
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_status, __pyx_kp_u_Production_Stable) < 0) __PYX_ERR(0, 30, __pyx_L1_error)
@@ -3252,11 +3252,11 @@ if (!__Pyx_RefNanny) {
   /* "arandomness/memeater/MemEater.pyx":31
  * __maintainer__ = 'Alex Hyer'
  * __status__ = 'Production/Stable'
- * __version__ = '1.0.1'             # <<<<<<<<<<<<<<
+ * __version__ = '1.0.2'             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_u_1_0_1) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_version, __pyx_kp_u_1_0_2) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
 
   /* "arandomness/memeater/MemEater.pyx":1
  * #! /usr/bin/env python             # <<<<<<<<<<<<<<
