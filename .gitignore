@@ -69,3 +69,4 @@ target/
 docs/source/_static/
 docs/source/_templates/
 build/bdist.linux-x86_64/
+.Rproj.user
