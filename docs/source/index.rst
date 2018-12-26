@@ -11,7 +11,7 @@ arandomness: an arandom assortment of random modules
 :Date: |today|
 :Version: |version|
 
-.. image:: ../../logo/arandomness_logo_480.png
+.. image:: images/arandomness_logo_160.png
 
 .. automodule:: arandomness
 
