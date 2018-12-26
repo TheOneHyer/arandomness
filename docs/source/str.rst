@@ -2,7 +2,7 @@
 string
 ======
 
-.. automodule:: arandomness.string
+.. automodule:: arandomness.str
 
 Introduction
 ------------
@@ -36,7 +36,7 @@ entry.
 API Documentation
 =================
 
-.. autofunction:: arandomness.string.autocorrect
+.. autofunction:: arandomness.str.autocorrect
 
 
 max_substring
@@ -50,4 +50,4 @@ later position as demonstrated in the docstring examples.
 API Documentation
 =================
 
-.. autofunction:: arandomness.string.max_substring
+.. autofunction:: arandomness.str.max_substring

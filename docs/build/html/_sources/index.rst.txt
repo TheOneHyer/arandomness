@@ -11,6 +11,8 @@ arandomness: an arandom assortment of random modules
 :Date: |today|
 :Version: |version|
 
+.. image:: ../../logo/arandomness_logo_480.png
+
 .. automodule:: arandomness
 
 
@@ -41,7 +43,7 @@ Contents
    :maxdepth: 2
 
    argparse.rst
-   string.rst
+   str.rst
    trees.rst
 
 
